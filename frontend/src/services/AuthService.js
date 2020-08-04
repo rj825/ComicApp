@@ -8,6 +8,10 @@ export default {
 
   register(user) {
     return axios.post('/register', user)
+  },
+
+  upgrade(user) {
+    return axios.put('/upgrade', user)
   }
 
 }
