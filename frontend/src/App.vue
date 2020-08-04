@@ -12,7 +12,7 @@
 <style>
 #app {
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: minmax(100px, 20%) auto;
   grid-template-rows: auto;
   height: 100vh;
 }
