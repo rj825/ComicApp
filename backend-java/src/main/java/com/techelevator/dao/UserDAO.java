@@ -9,4 +9,6 @@ public interface UserDAO {
     boolean usernameExists(String username);
     
     boolean create(String username, String password, String role);
+    
+    void updateUserRole (String username);
 }

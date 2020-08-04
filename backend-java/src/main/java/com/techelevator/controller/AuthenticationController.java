@@ -1,5 +1,7 @@
 package com.techelevator.controller;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
@@ -24,66 +26,73 @@ import com.techelevator.security.jwt.TokenProvider;
 @CrossOrigin
 public class AuthenticationController {
 
-    private final TokenProvider tokenProvider;
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private UserDAO userDAO;
+	private final TokenProvider tokenProvider;
+	private final AuthenticationManagerBuilder authenticationManagerBuilder;
+	private UserDAO userDAO;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO) {
-        this.tokenProvider = tokenProvider;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-        this.userDAO = userDAO;
-    }
+	public AuthenticationController(TokenProvider tokenProvider,
+			AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO) {
+		this.tokenProvider = tokenProvider;
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
+		this.userDAO = userDAO;
+	}
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDTO loginDto) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDTO loginDto) {
 
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				loginDto.getUsername(), loginDto.getPassword());
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = tokenProvider.createToken(authentication, false);
-        
-        User user = userDAO.findByUsername(loginDto.getUsername());
+		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		String jwt = tokenProvider.createToken(authentication, false);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-        return new ResponseEntity<>(new LoginResponse(jwt, user), httpHeaders, HttpStatus.OK);
-    }
+		User user = userDAO.findByUsername(loginDto.getUsername());
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void register(@Valid @RequestBody RegisterUserDTO newUser) {
-        if (userDAO.usernameExists(newUser.getUsername())) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
-        } else {
-            userDAO.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
-        }
-    }
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+		return new ResponseEntity<>(new LoginResponse(jwt, user), httpHeaders, HttpStatus.OK);
+	}
 
-    /**
-     * Object to return as body in JWT Authentication.
-     */
-    static class LoginResponse {
+	@ResponseStatus(HttpStatus.CREATED)
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public void register(@Valid @RequestBody RegisterUserDTO newUser) {
+		if (userDAO.usernameExists(newUser.getUsername())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
+		} else {
+			userDAO.create(newUser.getUsername(), newUser.getPassword(), newUser.getRole());
+		}
+	}
 
-        private String token;
-        private User user;
+	@RequestMapping(value = "/upgrade", method = RequestMethod.PUT)
+	public void upgrade(Principal principal) {
+		System.out.println("updating user " + principal.getName());
+		userDAO.updateUserRole(principal.getName());
+	}
 
-        LoginResponse(String token, User user) {
-            this.token = token;
-            this.user = user;
-        }
+	/**
+	 * Object to return as body in JWT Authentication.
+	 */
+	static class LoginResponse {
 
-        @JsonProperty("token")
-        String getToken() {
-            return token;
-        }
+		private String token;
+		private User user;
 
-        void setToken(String token) {
-            this.token = token;
-        }
+		LoginResponse(String token, User user) {
+			this.token = token;
+			this.user = user;
+		}
 
-        @JsonProperty("user")
+		@JsonProperty("token")
+		String getToken() {
+			return token;
+		}
+
+		void setToken(String token) {
+			this.token = token;
+		}
+
+		@JsonProperty("user")
 		public User getUser() {
 			return user;
 		}
@@ -91,6 +100,5 @@ public class AuthenticationController {
 		public void setUser(User user) {
 			this.user = user;
 		}
-    }
+	}
 }
-
