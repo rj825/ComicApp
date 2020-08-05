@@ -56,14 +56,14 @@ export default {
         this.errorMsg =
           "Error " +
           verb +
-          " card. Response received was '" +
+          " collection. Response received was '" +
           error.response.statusText +
           "'.";
       } else if (error.request) {
-        this.errorMsg = "Error " + verb + " card. Server could not be reached.";
+        this.errorMsg = "Error " + verb + " collection. Server could not be reached.";
       } else {
         this.errorMsg =
-          "Error " + verb + " card. Request could not be created.";
+          "Error " + verb + " collection. Request could not be created.";
       }
     },
   },

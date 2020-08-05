@@ -20,7 +20,26 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    collections: []
+    collections: [
+      {
+        name: "Jacob's Collection",
+        id: "1",
+        userID: "1",
+        public: true
+    },
+    {
+      name: "Ben's Collection",
+      id: "2",
+      userID: "2",
+      public: true
+  },
+  {
+    name: "Randy's Collection",
+    id: "3",
+    userID: "3",
+    public: true
+},
+    ]
   },
  
   mutations: {

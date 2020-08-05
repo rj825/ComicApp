@@ -2,9 +2,21 @@
 <div id="app">
 
     <div id="nav" class="sidebar">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link> <br>
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
+        <div>
+          <router-link v-bind:to="{ name: 'home' }">Home</router-link> <br>
+        </div>
+        <div v-if="$store.state.token != ''">
+          <router-link  v-bind:to="{ name: 'upgrade' }">Upgrade</router-link> <br>
+        </div>
+        <div>
+          <router-link v-bind:to="{ name: 'collections' }">Collections</router-link> <br>
+        </div>
+        <div>
+          <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+        </div>
+        <div>
+          <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
+        </div>
     </div>
 
     <div class="content">
@@ -36,7 +48,7 @@ div.content {
 a {
   text-decoration: none;
   color: seashell;
-  margin: 25px;
+  margin: 10px;
   opacity: .5;
 
 }
