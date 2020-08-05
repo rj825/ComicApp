@@ -35,6 +35,7 @@ CREATE TABLE collections (
         collection_id int DEFAULT nextval('seq_collection_id'::regclass) NOT NULL,
         user_id int NOT NULL,
         name varchar(50) NOT NULL,
+        isPublic boolean NOT NULL,
         CONSTRAINT PK_collection PRIMARY KEY (collection_id),
         CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
