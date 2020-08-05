@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
 
-createCollection(name, isPublic){
-    return axios.post('/collections', name, isPublic)
+createCollection(collection){
+    return axios.post('/collections', collection)
 },
 allCollections(){
     return axios.get('/collections')

@@ -45,7 +45,7 @@ div.content {
   grid-area: router-view;
 }
 
-a {
+#nav a {
   text-decoration: none;
   color: seashell;
   margin: 10px;

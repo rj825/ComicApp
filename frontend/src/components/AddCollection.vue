@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click="showForm = !showForm">
+    <button v-if="$store.state.token != ''" v-on:click="showForm = !showForm">
       <span v-show="showForm">Hide Form</span>
       <span v-show="!showForm">Add Collection</span>
     </button>
@@ -15,7 +15,7 @@
         v-model="newCollection.name"
       />
       <label>Check to make collection public</label>
-      <input id="isPublic" name="isPublic" type="checkbox" v-model="newCollection.isPublic" />
+      <input id="isPublic" name="isPublic" type="checkbox" v-model="newCollection.publicCollection" />
       <button type="submit">Submit</button>
       <button type="reset" v-on:click="resetForm">Reset Form</button>
     </form>
@@ -30,7 +30,7 @@ export default {
     return {
       newCollection: {
         name: "",
-        isPublic: false,
+        publicCollection: false,
       },
       showForm: false,
     };
@@ -41,10 +41,10 @@ export default {
     },
     addNewCollection() {
       collectionService
-        .createCollection(this.newCollection.name, this.newCollection.isPublic)
+        .createCollection(this.newCollection)
         .then((response) => {
           if (response.status === 201) {
-            this.$router.push("/collections");
+            console.log("WE DID IT")
           }
         })
         .catch((error) => {
