@@ -1,5 +1,7 @@
 <template>
     <div class="whole-collection">
+        <router-link
+            :to="{name: 'collection-detail' , params: {id: collection.id, collection:collection}}">
         <div>
             {{collection.name}}
         </div>
@@ -9,6 +11,8 @@
         <div>
             {{collection.userID}}
         </div>
+        </router-link>
+
     </div>
 </template>
 

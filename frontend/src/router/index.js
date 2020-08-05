@@ -76,6 +76,7 @@ const router = new Router({
       path: '/collections/:id',
       name: 'collection-detail',
       component: SingleCollection,
+      props: true,
       meta: {
         requiresAuth: false
       }

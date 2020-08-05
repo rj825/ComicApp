@@ -23,22 +23,44 @@ export default new Vuex.Store({
     collections: [
       {
         name: "Jacob's Collection",
-        id: "1",
-        userID: "1",
+        id: 1,
+        userID: 1,
         public: true
     },
     {
       name: "Ben's Collection",
-      id: "2",
-      userID: "2",
+      id: 2,
+      userID: 2,
       public: true
   },
   {
     name: "Randy's Collection",
-    id: "3",
-    userID: "3",
+    id: 3,
+    userID: 3,
     public: true
 },
+    ],
+    comics: [
+      {
+        name: "Amazing Spider-Man",
+        issue: 1
+      },
+      {
+        name: "The Amazing Jacob",
+        issue: 200
+      },
+      {
+        name: "Threepoint",
+        issue: 333
+      },
+      {
+        name: "Ironman",
+        issue: 4
+      },
+      {
+        name: "Ironman",
+        issue: 5
+      }
     ]
   },
  
@@ -61,6 +83,9 @@ export default new Vuex.Store({
     },
     SET_COLLECTIONS(state, data){
       state.collections = data;
+    },
+    SET_COMICS(state, data) {
+      state.comics = data;
     }
   }
 })
