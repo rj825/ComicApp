@@ -12,21 +12,23 @@ public class Comic {
 	   private Long issue; 
 	   private String author;
 	   private String artist;
-	   private String publisher; 
+	   private String publisher;
+	   private String maincharacter;
 	
 	 
 	   
 	    public Comic() {
 		// TODO Auto-generated constructor stub
-	}
+	    }
 
-	   public Comic(Long comicId, String title, Long issue, String author, String artist, String publisher) {
+	   public Comic(Long comicId, String title, Long issue, String author, String artist, String publisher, String maincharacter) {
 		   this.setComicId(comicId);
 		   this.setTitle(title);
 		   this.setIssue(issue); 
 		   this.setAuthor(author);
 		   this.setArtist(artist);
 		   this.setPublisher(publisher);
+		   this.setMaincharacter(maincharacter);
 		       
 	   
 	   }
@@ -77,6 +79,14 @@ public class Comic {
 
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
+	}
+
+	public String getMaincharacter() {
+		return maincharacter;
+	}
+
+	public void setMaincharacter(String maincharacter) {
+		this.maincharacter = maincharacter;
 	}
 
 
