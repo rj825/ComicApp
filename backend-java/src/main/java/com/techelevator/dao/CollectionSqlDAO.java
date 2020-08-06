@@ -74,16 +74,31 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	}
 	
+	
 	public List<Collection> viewCollections(Principal principal) {
 		String sql = "";
-		if (principal!=null) {
+//		if (principal!=null) 
 		sql = "SELECT collections.* FROM collections JOIN users ON users.user_id = collections.user_id "
 				+ "WHERE collections.user_id = ? OR collections.isPublic = TRUE";
-		} else {
-			sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
-		}
+		
+//		else {
+//			sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
+//		}
 		Long userId = userDAO.findByUsername(principal.getName()).getId();
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+		List<Collection> listOfCollections = new ArrayList<Collection>();
+		while (rs.next()) {
+			Collection currentCollection = mapRowToCollection(rs);
+			listOfCollections.add(currentCollection);
+		}
+		
+		return listOfCollections;
+
+	}
+	
+	public List<Collection> viewCollections() {
+		String sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
 		List<Collection> listOfCollections = new ArrayList<Collection>();
 		while (rs.next()) {
 			Collection currentCollection = mapRowToCollection(rs);
