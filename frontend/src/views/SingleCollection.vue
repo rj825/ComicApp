@@ -1,36 +1,43 @@
 <template>
-<div>
-
-    <div>
-        {{collection.name}}
-    </div>
-        <comic-card>
-        </comic-card>
-    
-
-</div>
+  <div>
+    <div>{{collection.name}}</div>
+    <comic-card
+      v-for="comic in $store.state.comics"
+      v-bind:key="comic.id"
+      v-bind:comic="comic"
+    ></comic-card>
+  </div>
 </template>
 
 
 
 <script>
-import ComicCard from '../components/ComicCard.vue'
+import ComicCard from "../components/ComicCard.vue";
+import collectionService from "@/services/CollectionService.js";
 
 export default {
-    props: ['collection'],
+  props: ["collection"],
 
-    components: {
-        ComicCard
+  components: {
+    ComicCard,
+  },
+  created() {
+    this.retrieveComics();
+  },
+  methods: {
+    retrieveComics() {
+      collectionService
+        .singleCollection(this.collection.collectionId)
+        .then((response) => {
+          this.$store.commit("SET_COMICS", response.data);
+        });
     },
-    created() {
-
-    } 
-}
+  },
+};
 </script>
 
 
 
 
 <style>
-
 </style>

@@ -40,28 +40,8 @@ export default new Vuex.Store({
     public: true
 },
     ],
-    comics: [
-      {
-        name: "Amazing Spider-Man",
-        issue: 1
-      },
-      {
-        name: "The Amazing Jacob",
-        issue: 200
-      },
-      {
-        name: "Threepoint",
-        issue: 333
-      },
-      {
-        name: "Ironman",
-        issue: 4
-      },
-      {
-        name: "Ironman",
-        issue: 5
-      }
-    ]
+    comics: []
+    
   },
  
   mutations: {

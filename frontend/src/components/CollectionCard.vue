@@ -1,15 +1,15 @@
 <template>
     <div class="whole-collection">
         <router-link
-            :to="{name: 'collection-detail' , params: {id: collection.id, collection:collection}}">
+            :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
         <div>
             {{collection.name}}
         </div>
         <div>
-            {{collection.id}}
+            {{collection.collectionId}}
         </div>
         <div>
-            {{collection.userID}}
+            {{collection.userId}}
         </div>
         </router-link>
 
