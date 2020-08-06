@@ -36,11 +36,11 @@ public class CollectionSqlDAO implements CollectionDAO {
 	public Collection getCollection(Long collectionId) {
 		String sql = "SELECT * FROM collections WHERE collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
-		if(rs.next()) {
-		return mapRowToCollection(rs);
-	}else {
-		return null;
-	}
+		if (rs.next()) {
+			return mapRowToCollection(rs);
+		} else {
+			return null;
+		}
 	}
 
 	private Collection mapRowToCollection(SqlRowSet rs) {
@@ -61,19 +61,18 @@ public class CollectionSqlDAO implements CollectionDAO {
 		while (rs.next()) {
 			listOfComics.add(rs.getString("title"));
 		}
-		
+
 		Long collectionUserId = getCollection(collectionId).getUserId();
 		Long userId = userDAO.findByUsername(principal.getName()).getId();
-		
+
 		if (userId == collectionUserId || getCollection(collectionId).isPublicCollection()) {
 			return listOfComics;
-		}
-		else {
+		} else {
 			return null;
 		}
 
 	}
-	
+
 	public List<String> viewCollection(Long collectionId) {
 		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
@@ -82,23 +81,21 @@ public class CollectionSqlDAO implements CollectionDAO {
 		while (rs.next()) {
 			listOfComics.add(rs.getString("title"));
 		}
-		
+
 		if (getCollection(collectionId).isPublicCollection()) {
 			return listOfComics;
-		}
-		else {
+		} else {
 			return null;
 		}
 
 	}
-	
-	
+
 	public List<Collection> viewCollections(Principal principal) {
 		String sql = "";
 //		if (principal!=null) 
 		sql = "SELECT collections.* FROM collections JOIN users ON users.user_id = collections.user_id "
 				+ "WHERE collections.user_id = ? OR collections.isPublic = TRUE";
-		
+
 //		else {
 //			sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
 //		}
@@ -109,11 +106,24 @@ public class CollectionSqlDAO implements CollectionDAO {
 			Collection currentCollection = mapRowToCollection(rs);
 			listOfCollections.add(currentCollection);
 		}
-		
+
 		return listOfCollections;
 
 	}
-	
+
+	public List<Collection> viewMyCollections(Principal principal, String username) {
+		String sql = "SELECT * FROM collections WHERE collections.user_id = ?";
+		Long userId = userDAO.findByUsername(username).getId();
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, userId);
+		List<Collection> listOfCollections = new ArrayList<Collection>();
+		while (rs.next()) {
+			Collection currentCollection = mapRowToCollection(rs);
+			listOfCollections.add(currentCollection);
+		}
+
+		return listOfCollections;
+	}
+
 	public List<Collection> viewCollections() {
 		String sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
@@ -122,17 +132,9 @@ public class CollectionSqlDAO implements CollectionDAO {
 			Collection currentCollection = mapRowToCollection(rs);
 			listOfCollections.add(currentCollection);
 		}
-		
+
 		return listOfCollections;
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

@@ -36,53 +36,47 @@ public class CollectionsController {
 	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 	private UserDAO userDAO;
 	private CollectionDAO collectionDAO;
-	
 
-	public CollectionsController(TokenProvider tokenProvider,
-			AuthenticationManagerBuilder authenticationManagerBuilder, UserDAO userDAO, CollectionDAO collectionDAO) {
+	public CollectionsController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,
+			UserDAO userDAO, CollectionDAO collectionDAO) {
 		this.tokenProvider = tokenProvider;
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.userDAO = userDAO;
 		this.collectionDAO = collectionDAO;
 	}
 
-	
-
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "/collections", method = RequestMethod.POST)
-	
-	public void createCollection(Principal principal, @RequestBody Collection collection ) {
-	collectionDAO.createCollection(principal, collection.getName(), collection.isPublicCollection());
-				}
 
-	
+	public void createCollection(Principal principal, @RequestBody Collection collection) {
+		collectionDAO.createCollection(principal, collection.getName(), collection.isPublicCollection());
+	}
+
 	@RequestMapping(value = "/collections/{collectionId}", method = RequestMethod.GET)
-	public List <String> viewCollection( Principal principal, @PathVariable Long collectionId) {
+	public List<String> viewCollection(Principal principal, @PathVariable Long collectionId) {
 		if (principal == null) {
 			return collectionDAO.viewCollection(collectionId);
 		}
-	 return collectionDAO.viewCollection(principal, collectionId);
-				}
-	
-	
+		return collectionDAO.viewCollection(principal, collectionId);
+	}
+
 	@RequestMapping(value = "/collections", method = RequestMethod.GET)
-	public List <Collection> viewCollections(Principal principal) {
+	public List<Collection> viewCollections(Principal principal) {
 		if (principal == null) {
 			return collectionDAO.viewCollections();
 		} else {
 			return collectionDAO.viewCollections(principal);
 		}
-				}
-	
+	}
+
+	@RequestMapping(value = "/collections/user/{username}", method = RequestMethod.GET)
+	public List<Collection> viewMyCollections(Principal principal, @PathVariable String username) {
+		return collectionDAO.viewMyCollections(principal, username);
+	}
+
 //	@RequestMapping(value = "/collections", method = RequestMethod.GET, params = {})
 //	public List <Collection> viewCollections() {
 //	 return collectionDAO.viewCollections();
 //				}
-	
-	
+
 }
-
-
-
-	
-

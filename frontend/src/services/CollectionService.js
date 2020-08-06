@@ -10,5 +10,10 @@ allCollections(){
 },
 singleCollection(id){
     return axios.get(`/collections/${id}`)
+},
+
+myCollections(username){
+    return axios.get(`/collections/user/${username}`)
 }
+
 }

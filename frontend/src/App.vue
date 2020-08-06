@@ -21,6 +21,9 @@
         <div>
           <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
         </div>
+        <div>
+          <router-link v-bind:to="{name: 'profile'}" v-if="$store.state.token !=''">Profile</router-link>
+        </div>
     </div>
 
     <div class="content">
