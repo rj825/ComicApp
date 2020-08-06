@@ -8,7 +8,7 @@
       </button>
     </div>
 
-    <form class="form" v-on:submit.prevent="addNewCollection" v-if="showForm">
+    <form class="form" v-on:submit="addNewCollection" v-if="showForm">
       
       <div>
         <label for="collectionName">Collection Name:</label>
@@ -60,7 +60,7 @@ export default {
         .createCollection(this.newCollection)
         .then((response) => {
           if (response.status === 201) {
-            console.log("WE DID IT")
+            this.resetForm();
           }
         })
         .catch((error) => {

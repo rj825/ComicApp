@@ -57,8 +57,7 @@ export default {
 <style>
 
 .add-collection.form {
-    border: solid 2.5px black;
-    border-radius: 5px;
+    
 }
 
 .collections {
