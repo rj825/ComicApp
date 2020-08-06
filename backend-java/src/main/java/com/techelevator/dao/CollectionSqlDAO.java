@@ -61,9 +61,11 @@ public class CollectionSqlDAO implements CollectionDAO {
 		while (rs.next()) {
 			listOfComics.add(rs.getString("title"));
 		}
-		String username = principal.getName();
-		String collectionUsername = getCollection(collectionId).getName();
-		if (username == collectionUsername || getCollection(collectionId).isPublicCollection()) {
+	
+		Long collectionUserId = getCollection(collectionId).getUserId();
+		Long userId = userDAO.findByUsername(principal.getName()).getId();
+		
+		if (userId == collectionUserId || getCollection(collectionId).isPublicCollection()) {
 			return listOfComics;
 		}
 		else {

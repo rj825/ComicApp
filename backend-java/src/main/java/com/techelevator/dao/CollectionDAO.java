@@ -9,7 +9,7 @@ public interface CollectionDAO {
 	
 	 void createCollection (Principal principal, String collectionName, boolean isPublic);
 	 
-	 Collection getCollection( Long collectionId);
+	 Collection getCollection(Long collectionId);
 	 
 	 List <String> viewCollection(Principal principal, Long collectionId);
 	 	 
