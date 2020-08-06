@@ -58,6 +58,11 @@ public class CollectionsController {
 	 return collectionDAO.viewCollection(principal, collectionId);
 				}
 	
+	@RequestMapping(value = "/collections", method = RequestMethod.GET)
+	public List <Collection> viewCollections( Principal principal) {
+	 return collectionDAO.viewCollections(principal);
+				}
+	
 	
 }
 

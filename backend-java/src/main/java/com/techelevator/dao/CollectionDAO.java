@@ -12,6 +12,8 @@ public interface CollectionDAO {
 	 Collection getCollection(Long collectionId);
 	 
 	 List <String> viewCollection(Principal principal, Long collectionId);
+	 
+	 List <Collection> viewCollections( Principal principal);
 	 	 
 	 
 	 
