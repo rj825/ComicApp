@@ -1,7 +1,10 @@
 <template>
     <div class="collections">
-        Add collection button to pop out form and list of collections goes here
-        <add-collection></add-collection>
+
+        <div class="add-collection-form">
+            <add-collection></add-collection>
+        </div>
+
         <div>
             <collection-card
             class="card"  
@@ -52,6 +55,11 @@ export default {
 </script>
 
 <style>
+
+.add-collection.form {
+    border: solid 2.5px black;
+    border-radius: 5px;
+}
 
 .collections {
     height: 90vh;

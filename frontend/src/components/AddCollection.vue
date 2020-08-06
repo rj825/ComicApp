@@ -1,24 +1,40 @@
 <template>
   <div>
-    <button v-if="$store.state.token != ''" v-on:click="showForm = !showForm">
-      <span v-show="showForm">Hide Form</span>
-      <span v-show="!showForm">Add Collection</span>
-    </button>
-    <form v-on:submit.prevent="addNewCollection" v-if="showForm">
-      <label for="collectionName">Collection Name:</label>
-      <br />
-      <input
-        id="collectionName"
-        name="collectionName"
-        type="text"
-        placeholder="Collection Name Here (50 characters max)"
-        v-model="newCollection.name"
-      />
-      <label>Check to make collection public</label>
-      <input id="isPublic" name="isPublic" type="checkbox" v-model="newCollection.publicCollection" />
-      <button type="submit">Submit</button>
-      <button type="reset" v-on:click="resetForm">Reset Form</button>
+
+    <div>
+      <button v-if="$store.state.token != ''" v-on:click="showForm = !showForm">
+        <span v-show="showForm">Hide Form</span>
+        <span v-show="!showForm">Add Collection</span>
+      </button>
+    </div>
+
+    <form class="form" v-on:submit.prevent="addNewCollection" v-if="showForm">
+      
+      <div>
+        <label for="collectionName">Collection Name:</label>
+        <input
+          id="collectionName"
+          name="collectionName"
+          type="text"
+          placeholder="(50 characters max)"
+          v-model="newCollection.name"/>
+      </div>
+
+      <div>
+        <label>Check to make collection public</label>
+        <input id="isPublic" name="isPublic" type="checkbox" v-model="newCollection.publicCollection" />
+      </div>
+
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+
+      <div>
+        <button type="reset" v-on:click="resetForm">Reset Form</button>
+      </div>
+
     </form>
+
   </div>
 </template>
 
@@ -71,4 +87,16 @@ export default {
 </script>
 
 <style>
+
+.form {
+  display: inline-block;
+  border: solid 2.5px black;
+  border-radius: 5px;
+  background-color: skyblue;
+}
+
+.form div {
+  margin: 5px
+}
+
 </style>
