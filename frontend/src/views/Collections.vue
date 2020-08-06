@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="collections">
         Add collection button to pop out form and list of collections goes here
         <add-collection></add-collection>
         <div>
@@ -52,6 +52,10 @@ export default {
 </script>
 
 <style>
+
+.collections {
+    height: 90vh;
+}
 
 .card {
     display: inline-block;

@@ -33,4 +33,9 @@ export default {
 
 <style>
 
+.whole-collection {
+    background-color: firebrick;
+    font-color: seashell;
+}
+
 </style>

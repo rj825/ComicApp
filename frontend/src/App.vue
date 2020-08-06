@@ -1,6 +1,10 @@
 <template>
 <div id="app">
 
+  <div>
+      <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
+    </div>
+
     <div id="nav" class="sidebar">
         <div>
           <router-link v-bind:to="{ name: 'home' }">Home</router-link> <br>
@@ -29,8 +33,8 @@
 <style>
 #app {
   display: grid;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   grid-template-areas: 
   "navbar router-view";
   grid-template-columns: 100px 1fr;
@@ -55,6 +59,15 @@ div.content {
 
 a.router-link-exact-active {
   opacity: 1;
+}
+
+img {
+  position: absolute;
+  
+  left: 0px;
+  top: 0px;
+  opacity: 0.3;
+  z-index: -1;
 }
 
 

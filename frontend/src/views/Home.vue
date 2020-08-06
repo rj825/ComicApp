@@ -1,9 +1,7 @@
 <template>
   <div class="home">
 
-    <div>
-      <img class="background" src="../assets/baw-comic.jpg" alt="Series of Comic Books">
-    </div>
+    
 
     <div class="header">
     </div>
@@ -27,7 +25,7 @@ export default {
 
 .home {
   display: grid;
-  height: 100%;
+  height: 90vh;
   width: 100%;
   grid-template-columns: 1fr, 1fr, 1fr;
   grid-template-rows: 1fr, 1fr, 1fr;
@@ -37,15 +35,7 @@ export default {
   ". . .";
 }
 
-img {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  left: 0px;
-  top: 0px;
-  opacity: 0.3;
-  z-index: -1;
-}
+
 
 .welcome-message {
   
