@@ -3,7 +3,7 @@
     <div>{{collection.name}}</div>
     <comic-card
       v-for="comic in $store.state.comics"
-      v-bind:key="comic.id"
+      v-bind:key="comic.comicId"
       v-bind:comic="comic"
     ></comic-card>
   </div>

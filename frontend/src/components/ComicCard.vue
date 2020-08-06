@@ -1,7 +1,7 @@
 <template>
     <div class="comic">
         <div>
-            {{comic.title}}
+            {{comic}}
         </div>
         <div>
             {{comic.issue}}

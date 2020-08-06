@@ -58,6 +58,9 @@ public class CollectionsController {
 	
 	@RequestMapping(value = "/collections/{collectionId}", method = RequestMethod.GET)
 	public List <String> viewCollection( Principal principal, @PathVariable Long collectionId) {
+		if (principal == null) {
+			return collectionDAO.viewCollection(collectionId);
+		}
 	 return collectionDAO.viewCollection(principal, collectionId);
 				}
 	

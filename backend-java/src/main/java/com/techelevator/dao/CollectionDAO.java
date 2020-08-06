@@ -13,6 +13,8 @@ public interface CollectionDAO {
 	 
 	 List <String> viewCollection(Principal principal, Long collectionId);
 	 
+	 List<String> viewCollection(Long collectionId);
+	 
 	 List <Collection> viewCollections(Principal principal);
 	 
 	 List <Collection> viewCollections();

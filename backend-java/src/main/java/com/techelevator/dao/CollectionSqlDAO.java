@@ -61,11 +61,29 @@ public class CollectionSqlDAO implements CollectionDAO {
 		while (rs.next()) {
 			listOfComics.add(rs.getString("title"));
 		}
-	
+		
 		Long collectionUserId = getCollection(collectionId).getUserId();
 		Long userId = userDAO.findByUsername(principal.getName()).getId();
 		
 		if (userId == collectionUserId || getCollection(collectionId).isPublicCollection()) {
+			return listOfComics;
+		}
+		else {
+			return null;
+		}
+
+	}
+	
+	public List<String> viewCollection(Long collectionId) {
+		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
+		List<String> listOfComics = new ArrayList<String>();
+		while (rs.next()) {
+			listOfComics.add(rs.getString("title"));
+		}
+		
+		if (getCollection(collectionId).isPublicCollection()) {
 			return listOfComics;
 		}
 		else {
