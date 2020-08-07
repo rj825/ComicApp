@@ -11,6 +11,8 @@
       <p wrap="hard">The ultimate site to log and share your comic collections! </p>
     </div>
 
+    
+
   </div>
 </template>
 
