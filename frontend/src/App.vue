@@ -22,7 +22,7 @@
           <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
         </div>
         <div>
-          <router-link v-bind:to="{name: 'profile'}" v-if="$store.state.token !=''">Profile</router-link>
+          <router-link v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">Profile</router-link>
         </div>
     </div>
 
@@ -32,6 +32,18 @@
 
 </div>
 </template>
+
+<script>
+  
+  export default {
+    name: 'app',
+    computed: {
+      username() {
+        return this.$store.state.user.username
+      }
+    }
+}
+</script>
 
 <style>
 #app {

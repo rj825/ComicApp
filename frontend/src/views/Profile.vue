@@ -3,7 +3,7 @@
 
   <div>
       <div>
-          Your User Name Is {{$store.state.user.name}}
+          Your User Name Is {{$store.state.user.username}}
       </div>
    <collection-card v-for="collection in $store.state.collections"
    v-bind:key="collection.id"
@@ -20,11 +20,11 @@ import CollectionService from '../services/CollectionService'
 export default {
     name: "profile",
     created(){
-        this.retrieveMyCollections()
+        this.retrieveMyCollections(this.$store.state.user.username)
     },
 methods: {
-retrieveMyCollections(){
-    CollectionService.myCollections().then(response=> {
+retrieveMyCollections(username){
+    CollectionService.myCollections(username).then(response=> {
         this.$store.commit("SET_COLLECTIONS", response.data)
     } );
 }
