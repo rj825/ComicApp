@@ -1,7 +1,8 @@
 <template>
 <div id="app">
 
-  <div>
+    <div>
+      <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
       <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
     </div>
 
@@ -51,6 +52,7 @@
 #app {
   display: grid;
   width: 100%;
+  max-width: 700px;
   height: 100%;
   grid-template-areas: 
   "navbar router-view";
