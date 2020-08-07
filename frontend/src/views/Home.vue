@@ -24,6 +24,7 @@ export default {
 <style>
 
 .home {
+  font-family: 'Bangers';
   display: grid;
   height: 90vh;
   width: 100%;

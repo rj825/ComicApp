@@ -46,6 +46,8 @@
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 #app {
   display: grid;
   width: 100%;
