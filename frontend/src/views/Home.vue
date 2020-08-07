@@ -45,6 +45,8 @@ export default {
   border-radius: 10px;
   grid-area: message;
   text-align: center;
+  max-width: 300px;
+  max-height: 150px;
 }
 
 .header {

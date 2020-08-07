@@ -3,7 +3,7 @@
 
     <div>
       <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
-      <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
+      
     </div>
 
     <div id="nav" class="sidebar">
@@ -62,6 +62,8 @@
 #nav {
   grid-area: navbar;
   background-color: #236581;
+  border: solid 2px black;
+  border-radius: 10px;
 }
 div.content {
 
@@ -85,7 +87,7 @@ img {
   
   left: 0px;
   top: 0px;
-  opacity: 0.3;
+  opacity: 0.4;
   z-index: -1;
 }
 
