@@ -8,6 +8,7 @@ import store from '../store/index'
 import Upgrade from '../views/Upgrade.vue'
 import Collections from '../views/Collections.vue'
 import SingleCollection from '../views/SingleCollection.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(Router)
 
@@ -80,7 +81,17 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: '/collections/user/:username',
+      name: 'profile',
+      component:Profile,
+      meta:{
+        requiresAuth: true
+      }
+     
     }
+
   ]
 })
 
