@@ -50,7 +50,6 @@ public class CollectionsController {
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "/collections", method = RequestMethod.POST)
-	
 	public void createCollection(Principal principal, @RequestBody Collection collection ) {
 	collectionDAO.createCollection(principal, collection.getName(), collection.isPublicCollection());
 				}
