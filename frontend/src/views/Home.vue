@@ -3,7 +3,13 @@
 
     
 
-    
+    <b-container>
+      <b-row>
+        <b-col>
+          
+        </b-col>
+      </b-row>
+    </b-container>
 
     <div class="welcome-message">
       <h1>Welcome to Three-Point!</h1>
