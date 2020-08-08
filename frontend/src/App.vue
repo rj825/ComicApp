@@ -57,6 +57,8 @@
   grid-template-areas: 
   "navbar router-view";
   grid-template-columns: 100px 1fr;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 #nav {
@@ -64,6 +66,7 @@
   background-color: #236581;
   border: solid 2px black;
   border-radius: 10px;
+  
 }
 div.content {
 

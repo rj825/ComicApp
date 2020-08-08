@@ -3,8 +3,7 @@
 
     
 
-    <div class="header">
-    </div>
+    
 
     <div class="welcome-message">
       <h1>Welcome to Three-Point!</h1>
@@ -25,17 +24,11 @@ export default {
 
 <style>
 
+
 .home {
   font-family: 'Bangers';
-  display: grid;
-  height: 90vh;
-  width: 100%;
-  grid-template-columns: 1fr, 1fr, 1fr;
-  grid-template-rows: 1fr, 1fr, 1fr;
-  grid-template-areas: 
-  "header header header"
-  ". message ."
-  ". . .";
+
+  
 }
 
 
@@ -49,12 +42,11 @@ export default {
   text-align: center;
   max-width: 300px;
   max-height: 150px;
+  margin: auto;
+ 
 }
 
-.header {
-grid-area: header;
 
-}
 
 
 
