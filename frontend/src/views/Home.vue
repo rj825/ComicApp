@@ -6,15 +6,21 @@
     <b-container>
       <b-row>
         <b-col>
-          
+
+        </b-col>
+        <b-col cols="8">
+            <div class="welcome-message shadow">
+              <h1>Welcome to Three-Point!</h1>
+              <p wrap="hard">The ultimate site to log and share your comic collections! </p>
+            </div>
+        </b-col>
+        <b-col>
+
         </b-col>
       </b-row>
     </b-container>
 
-    <div class="welcome-message">
-      <h1>Welcome to Three-Point!</h1>
-      <p wrap="hard">The ultimate site to log and share your comic collections! </p>
-    </div>
+    
 
     
 

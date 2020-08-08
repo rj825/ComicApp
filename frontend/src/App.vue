@@ -1,14 +1,19 @@
 <template>
 <div id="app">
 
-    <div>
+    <!-- <div>
       <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
       
-    </div>
+    </div> -->
+
+   
 
     <b-container>
       <b-row>
-        <b-col cols="3">
+        <nav-bar></nav-bar>
+      </b-row>
+      <b-row>
+        <b-col cols="3" class="mt-5">
             <div id="nav" class="sidebar">
                 <div>
                   <router-link v-bind:to="{ name: 'home' }">Home</router-link> <br>
@@ -31,7 +36,7 @@
             </div>
         </b-col>
 
-        <b-col>
+        <b-col class="mt-5">
           <div class="content">
             <router-view />
           </div>
@@ -47,9 +52,13 @@
 </template>
 
 <script>
+
+import NavBar from '@/components/NavBar'
   
   export default {
     name: 'app',
+    components: {
+      NavBar},
     computed: {
       username() {
         return this.$store.state.user.username
@@ -62,6 +71,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 
+#app {
+  background-image: url("./assets/baw-comic-light.jpg");
+  background-size: cover;
+  height: 100vh;
+}
 
 #nav {
   grid-area: navbar;
@@ -84,14 +98,14 @@ a.router-link-exact-active {
   opacity: 1;
 }
 
-img {
+/* img {
   position: absolute;
   
   left: 0px;
   top: 0px;
   opacity: 0.4;
   z-index: -1;
-}
+} */
 
 
 </style>
