@@ -1,5 +1,5 @@
 <template>
-    <b-col cols="3" class="whole-collection">
+    <b-col cols="2" class="whole-collection shado">
         <router-link
             :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
         <div>
@@ -35,6 +35,13 @@ export default {
 
 .whole-collection {
     text-decoration: none;
+    font-family: "Bangers";
+    display: inline-block;
+    border: 25px;
+    border: solid 5px black;
+    border-radius: 10px;
+    margin: 5px;
+    background-color: firebrick;
 }
 
 </style>

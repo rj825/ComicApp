@@ -5,10 +5,10 @@
       <div>
           Your User Name Is {{$store.state.user.username}}
       </div>
-   <collection-card v-for="collection in $store.state.collections"
-   v-bind:key="collection.id"
-   v-bind:collection="collection">   
-   </collection-card>
+            <collection-card v-for="collection in $store.state.collections"
+            v-bind:key="collection.id"
+            v-bind:collection="collection">   
+            </collection-card>
   </div>
 </template>
 

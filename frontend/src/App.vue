@@ -67,6 +67,7 @@ import NavBar from '@/components/NavBar'
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 
 
+
 #app {
   background-image: url("./assets/baw-comic-light.jpg");
   background-size: cover;
