@@ -9,9 +9,11 @@
    
 
     <b-container>
-      <b-row>
-        <nav-bar></nav-bar>
-      </b-row>
+
+      
+          <nav-bar></nav-bar>
+        
+      
       <b-row>
         <b-col cols="3" class="mt-5">
             <div id="nav" class="sidebar">
