@@ -53,7 +53,7 @@ p {
 .welcome-message {
   
   background: rgb(255, 215, 36);
-  border: solid 2px black;
+  border: solid 2.5px black;
   border-radius: 10px;
   text-align: center;
   margin: auto;

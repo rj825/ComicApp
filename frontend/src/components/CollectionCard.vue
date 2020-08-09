@@ -6,10 +6,10 @@
             {{collection.name}}
         </div>
         <div>
-            {{collection.collectionId}}
+            Collection ID: {{collection.collectionId}}
         </div>
         <div>
-            {{collection.userId}}
+            User ID: {{collection.userId}}
         </div>
         </router-link>
 
@@ -38,7 +38,7 @@ export default {
     font-family: "Bangers";
     display: inline-block;
     border: 25px;
-    border: solid 5px black;
+    border: solid 2.5px black;
     border-radius: 10px;
     margin: 5px;
     background-color: firebrick;
