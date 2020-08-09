@@ -17,7 +17,8 @@
           name="collectionName"
           type="text"
           placeholder="(50 characters max)"
-          v-model="newCollection.name"/>
+          v-model="newCollection.name"
+          required/>
       </div>
 
       <div>
