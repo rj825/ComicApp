@@ -1,5 +1,5 @@
 <template>
-    <b-col cols="2" class="whole-collection shadow">
+    <b-col cols="2" class="whole-collection shadow-lg">
         <router-link
             :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
         <div>

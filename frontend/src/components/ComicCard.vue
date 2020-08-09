@@ -1,5 +1,5 @@
 <template>
-    <div class="comic">
+    
         <b-col class="whole-comic">
             <div>
                 {{comic}}
@@ -8,7 +8,7 @@
         </b-col>
         
       
-    </div>
+    
 </template>
 
 <script>
