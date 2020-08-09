@@ -5,14 +5,21 @@ import java.util.Objects;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Comic {
+		@JsonProperty("id")
 	   private Long comicId;
+		@JsonProperty("title") //could be the same
 	   private String title;
+		@JsonProperty("issueNumber")
 	   private Long issue; 
+		@JsonProperty("name")
 	   private String author;
+		@JsonProperty("name")
 	   private String artist;
 	   private String publisher;
+	    @JsonProperty("name")
 	   private String maincharacter;
 	
 	 
