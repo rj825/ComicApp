@@ -1,19 +1,19 @@
 <template>
-    <div class="whole-collection">
+    <b-col cols="2" class="whole-collection shadow-lg">
         <router-link
             :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
         <div>
             {{collection.name}}
         </div>
         <div>
-            {{collection.collectionId}}
+            Collection ID: {{collection.collectionId}}
         </div>
         <div>
-            {{collection.userId}}
+            User ID: {{collection.userId}}
         </div>
         </router-link>
 
-    </div>
+    </b-col>
 </template>
 
 <script>
@@ -34,8 +34,14 @@ export default {
 <style>
 
 .whole-collection {
+    text-decoration: none;
+    font-family: "Bangers";
+    display: inline-block;
+    border: 25px;
+    border: solid 2.5px black;
+    border-radius: 10px;
+    margin: 5px;
     background-color: firebrick;
-    font-color: seashell;
 }
 
 </style>

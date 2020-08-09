@@ -3,13 +3,26 @@
 
     
 
-    <div class="header">
-    </div>
+    <b-container>
+      <b-row>
+        <b-col>
 
-    <div class="welcome-message">
-      <h1>Welcome to Three-Point!</h1>
-      <p wrap="hard">The ultimate site to log and share your comic collections! </p>
-    </div>
+        </b-col>
+        <b-col cols="8">
+            <div class="welcome-message shadow">
+              <p class="headline">Welcome to Three-Point!</p>
+              <p wrap="hard">The ultimate site to log and share your comic collections! </p>
+            </div>
+        </b-col>
+        <b-col>
+
+        </b-col>
+      </b-row>
+    </b-container>
+
+    
+
+    
 
   </div>
 </template>
@@ -23,33 +36,31 @@ export default {
 
 <style>
 
+
 .home {
-  display: grid;
-  height: 90vh;
-  width: 100%;
-  grid-template-columns: 1fr, 1fr, 1fr;
-  grid-template-rows: 1fr, 1fr, 1fr;
-  grid-template-areas: 
-  "header header header"
-  ". message ."
-  ". . .";
+  font-family: 'Bangers';
+  
 }
 
+p {
+  font-size: 3vw;
+}
 
+.headline {
+  font-size: 5vw;
+}
 
 .welcome-message {
   
-  background: rgb(255, 215, 36);
-  border: solid 2px black;
+  background: #FCFC62;
+  border: solid 2.5px black;
   border-radius: 10px;
-  grid-area: message;
   text-align: center;
+  margin: auto;
+ 
 }
 
-.header {
-grid-area: header;
 
-}
 
 
 

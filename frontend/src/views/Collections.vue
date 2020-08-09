@@ -1,18 +1,25 @@
 <template>
     <div class="collections">
 
-        <div class="add-collection-form">
-            <add-collection></add-collection>
-        </div>
+        <b-container>
+            
+            <b-row>
+                <b-col>
+                    <add-collection></add-collection>
+                </b-col>
+            </b-row>
 
-        <div>
-            <collection-card
-            class="card"  
+            <b-row>
+                <collection-card
+            class="collection-card"  
             v-for="collection in $store.state.collections" 
             v-bind:key="collection.id"
             v-bind:collection="collection">
-            
             </collection-card>
+            </b-row>
+        </b-container>
+        <div>
+            
             
         </div>
     </div>
@@ -56,19 +63,5 @@ export default {
 
 <style>
 
-.add-collection.form {
-    
-}
-
-.collections {
-    height: 90vh;
-}
-
-.card {
-    display: inline-block;
-    border: 25px;
-    border: solid 5px black;
-    border-radius: 10px;
-}
 
 </style>
