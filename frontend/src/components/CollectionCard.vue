@@ -1,5 +1,5 @@
 <template>
-    <div class="whole-collection">
+    <b-col class="whole-collection">
         <router-link
             :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
         <div>
@@ -13,7 +13,7 @@
         </div>
         </router-link>
 
-    </div>
+    </b-col>
 </template>
 
 <script>
@@ -34,8 +34,7 @@ export default {
 <style>
 
 .whole-collection {
-    background-color: firebrick;
-    font-color: seashell;
+    text-decoration: none;
 }
 
 </style>

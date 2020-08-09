@@ -5,14 +5,19 @@
             <add-collection></add-collection>
         </div>
 
-        <div>
-            <collection-card
+
+        <b-container>
+            <b-row>
+                <collection-card
             class="card"  
             v-for="collection in $store.state.collections" 
             v-bind:key="collection.id"
             v-bind:collection="collection">
-            
             </collection-card>
+            </b-row>
+        </b-container>
+        <div>
+            
             
         </div>
     </div>
