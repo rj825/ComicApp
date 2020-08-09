@@ -1,12 +1,6 @@
 <template>
 <div id="app">
 
-    <!-- <div>
-      <img class="background" src="@/assets/baw-comic.jpg" alt="Series of Comic Books">
-      
-    </div> -->
-
-   
 
     <b-container>
 
@@ -15,7 +9,7 @@
         
       
       <b-row>
-        <b-col cols="3" class="mt-5">
+        <!-- <b-col cols="3" class="mt-5">
             <div id="nav" class="sidebar">
                 <div>
                   <router-link v-bind:to="{ name: 'home' }">Home</router-link> <br>
@@ -36,7 +30,7 @@
                   <router-link v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">Profile</router-link>
                 </div>
             </div>
-        </b-col>
+        </b-col> -->
 
         <b-col class="mt-5">
           <div class="content">
@@ -100,14 +94,7 @@ a.router-link-exact-active {
   opacity: 1;
 }
 
-/* img {
-  position: absolute;
-  
-  left: 0px;
-  top: 0px;
-  opacity: 0.4;
-  z-index: -1;
-} */
+
 
 
 </style>
