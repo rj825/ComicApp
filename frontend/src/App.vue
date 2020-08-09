@@ -84,16 +84,11 @@ import NavBar from '@/components/NavBar'
 } */
 
 
-#nav a {
+a:link {
   text-decoration: none;
-  color: seashell;
-  margin: 10px;
+  color: black;
   opacity: .5;
 
-}
-
-a.router-link-exact-active {
-  opacity: 1;
 }
 
 

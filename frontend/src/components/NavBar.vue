@@ -1,8 +1,8 @@
 <template>
   <div class="navbarroot">
 
-        <b-navbar class="navbar"  toggleable="lg" type="light" variant="info">
-            <router-link v-bind:to="{ name: 'home' }">Three-Point</router-link>
+        <b-navbar class="navbar"  toggleable="lg"  variant="info">
+            <router-link v-bind:to="{ name: 'home' }">Three-Point (logo)</router-link>
             
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -69,4 +69,15 @@ export default {
 
 
 
+
+a.router-link-active {
+    color:black;
+    opacity: .5;
+}
+
+a.router-link-exact-active {
+  color: black;
+  border-top: solid white 2.5px;
+  opacity: .5;
+}
 </style>
