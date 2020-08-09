@@ -2,8 +2,9 @@
   <div class="navbarroot">
 
         <b-navbar class="navbar"  toggleable="lg"  variant="info">
-            <router-link v-bind:to="{ name: 'home' }">(logo)</router-link>
-            <img src="src/assets/threepoint.png" />
+            <router-link v-bind:to="{ name: 'home' }">
+                <img src="@/assets/threepoint.png" height="50px" width="53px"/>
+            </router-link>
             
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -68,17 +69,20 @@ export default {
     font-family: "Bangers";
 }
 
-
+a:visited {
+    color: #402039;
+    text-decoration: none;
+}
 
 
 a.router-link-active {
-    color:black;
-    opacity: .5;
+    color: #402039;
+    /* opacity: .5; */
 }
 
 a.router-link-exact-active {
   color: black;
   border-top: solid white 2.5px;
-  opacity: .5;
+  /* opacity: .5; */
 }
 </style>

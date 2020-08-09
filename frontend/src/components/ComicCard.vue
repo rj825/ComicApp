@@ -3,9 +3,7 @@
         <div>
             {{comic}}
         </div>
-        <div>
-            {{comic.issue}}
-        </div>
+        <img src="@/assets/sample-comic-cover.png" height="150px"/>
       
     </div>
 </template>

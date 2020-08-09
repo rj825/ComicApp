@@ -74,6 +74,9 @@ import NavBar from '@/components/NavBar'
   background-position: top;
   height: 100vh;
 }
+/* PALETTE COLORS PLEASE PICK FROM THESE
+https://coolors.co/b22222-236581-5bc0de-ffff66-402039 */
+
 
 /* #nav {
   grid-area: navbar;
@@ -83,13 +86,6 @@ import NavBar from '@/components/NavBar'
   
 } */
 
-
-a:link {
-  text-decoration: none;
-  color: black;
-  opacity: .5;
-
-}
 
 
 
