@@ -2,7 +2,8 @@
   <div class="navbarroot">
 
         <b-navbar class="navbar"  toggleable="lg"  variant="info">
-            <router-link v-bind:to="{ name: 'home' }">Three-Point (logo)</router-link>
+            <router-link v-bind:to="{ name: 'home' }">(logo)</router-link>
+            <img src="src/assets/threepoint.png" />
             
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
