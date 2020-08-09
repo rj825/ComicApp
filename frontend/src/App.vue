@@ -70,16 +70,17 @@ import NavBar from '@/components/NavBar'
 #app {
   background-image: url("./assets/baw-comic-light.jpg");
   background-size: cover;
+  background-position: top;
   height: 100vh;
 }
 
-#nav {
+/* #nav {
   grid-area: navbar;
   background-color: #236581;
   border: solid 2px black;
   border-radius: 10px;
   
-}
+} */
 
 
 #nav a {

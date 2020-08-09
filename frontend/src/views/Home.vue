@@ -10,7 +10,7 @@
         </b-col>
         <b-col cols="8">
             <div class="welcome-message shadow">
-              <h1>Welcome to Three-Point!</h1>
+              <p class="headline">Welcome to Three-Point!</p>
               <p wrap="hard">The ultimate site to log and share your comic collections! </p>
             </div>
         </b-col>
@@ -39,21 +39,23 @@ export default {
 
 .home {
   font-family: 'Bangers';
-
   
 }
 
+p {
+  font-size: 3vw;
+}
 
+.headline {
+  font-size: 5vw;
+}
 
 .welcome-message {
   
   background: rgb(255, 215, 36);
   border: solid 2px black;
   border-radius: 10px;
-  grid-area: message;
   text-align: center;
-  max-width: 300px;
-  max-height: 150px;
   margin: auto;
  
 }
