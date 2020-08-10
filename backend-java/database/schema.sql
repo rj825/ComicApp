@@ -20,6 +20,12 @@ CREATE SEQUENCE seq_comic_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+
+  CREATE SEQUENCE seq_character_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
   
 
 
@@ -47,8 +53,21 @@ CREATE TABLE comics (
         author varchar(50) NOT NULL,
         artist varchar(50) NOT NULL,
         publisher varchar(50) NOT NULL,
-        maincharacter varchar(50) NOT NULL,
         CONSTRAINT PK_comic PRIMARY KEY (comic_id)
+);
+
+CREATE TABLE characters (
+  character_id int DEFAULT nextval('seq_character_id'::regclass) NOT NULL,
+  characterName varchar(50) NOT NULL,
+  CONSTRAINT PK_character PRIMARY KEY (character_id)
+);
+
+CREATE TABLE comic_character (
+  comic_id int,
+  character_id int,
+  CONSTRAINT PK_comic_character PRIMARY KEY (comic_id,character_id),
+        CONSTRAINT FK_comic_character_comic FOREIGN KEY (comic_id) REFERENCES comics(comic_id),
+        CONSTRAINT FK_comic_character_character FOREIGN KEY (character_id) REFERENCES characters(character_id)
 );
 
 CREATE TABLE collection_comic (
@@ -67,15 +86,38 @@ INSERT INTO users (username,password_hash,role) VALUES ('premium','$2a$08$UkVvwp
 INSERT INTO collections (user_id, name, isPublic) VALUES (1, 'user collection', true);
 INSERT INTO collections (user_id, name, isPublic) VALUES (3, 'premium collection', false);
 
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('The Amazing Spider-Man', 1, 'Tom DeFalco', 'Joe Bennett', 'Marvel', 'Spider-Man');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('All Star Superman', 1, 'Grant Morrison', 'Frank Quitely', 'DC', 'Superman');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Spawn', 1, 'Todd McFarlane', 'Todd McFarlane', 'Image', 'Spawn');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('X-Men', 50, 'Arnold Drake', 'Jim Steranko', 'Marvel', 'Wolverine');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Batman: The Killing Joke', 1, 'Alan Moore', 'Brian Bolland', 'DC', 'Batman');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Moon Knight', 1, 'Warren Ellis', 'Declan Shalvey', 'Marvel', 'Moon Knight');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Secret Wars', 8, 'Jim Shooter', 'Mike Zeck', 'Marvel', 'Spider-Man');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Action Comics', 1, 'Jerry Siegel', 'Joe Shuster', 'DC', 'Superman');
-INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES ('Penance: Relentless', 1, 'Paul Jenkins', 'Paul Gulacy', 'Marvel', 'Penance');
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('The Amazing Spider-Man', 1, 'Tom DeFalco', 'Joe Bennett', 'Marvel');
+INSERT INTO characters (characterName) VALUES ('Spider-Man');
+INSERT INTO comic_character (comic_id, character_id) VALUES (1, 1);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('All Star Superman', 1, 'Grant Morrison', 'Frank Quitely', 'DC');
+INSERT INTO characters (characterName) VALUES ('Superman');
+INSERT INTO characters (characterName) VALUES ('Lois Lane');
+INSERT INTO comic_character (comic_id, character_id) VALUES (2, 2);
+INSERT INTO comic_character (comic_id, character_id) VALUES (2, 3);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Spawn', 1, 'Todd McFarlane', 'Todd McFarlane', 'Image');
+INSERT INTO characters (characterName) VALUES ('Spawn');
+INSERT INTO comic_character (comic_id, character_id) VALUES (3, 4);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('X-Men', 50, 'Arnold Drake', 'Jim Steranko', 'Marvel');
+INSERT INTO characters (characterName) VALUES ('Wolverine');
+INSERT INTO characters (characterName) VALUES ('Storm');
+INSERT INTO comic_character (comic_id, character_id) VALUES (4, 5);
+INSERT INTO comic_character (comic_id, character_id) VALUES (4, 6);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Batman: The Killing Joke', 1, 'Alan Moore', 'Brian Bolland', 'DC');
+INSERT INTO characters (characterName) VALUES ('Batman');
+INSERT INTO characters (characterName) VALUES ('Joker');
+INSERT INTO comic_character (comic_id, character_id) VALUES (5, 7);
+INSERT INTO comic_character (comic_id, character_id) VALUES (5, 8);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Moon Knight', 1, 'Warren Ellis', 'Declan Shalvey', 'Marvel');
+INSERT INTO characters (characterName) VALUES ('Moon Knight');
+INSERT INTO comic_character (comic_id, character_id) VALUES (6, 9);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Secret Wars', 8, 'Jim Shooter', 'Mike Zeck', 'Marvel');
+INSERT INTO comic_character (comic_id, character_id) VALUES (7, 1);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Action Comics', 1, 'Jerry Siegel', 'Joe Shuster', 'DC');
+INSERT INTO comic_character (comic_id, character_id) VALUES (8, 2);
+INSERT INTO comics (title, issue, author, artist, publisher) VALUES ('Penance: Relentless', 1, 'Paul Jenkins', 'Paul Gulacy', 'Marvel');
+INSERT INTO characters (characterName) VALUES ('Penance');
+INSERT INTO comic_character (comic_id, character_id) VALUES (9, 10);
+
 
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,1);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,2);
