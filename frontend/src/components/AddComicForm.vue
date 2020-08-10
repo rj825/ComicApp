@@ -10,13 +10,13 @@
     <form class="form" v-on:submit="addNewComic" v-if="showForm">
       
       <div>
-        <label for="comicName">Comic Name:</label>
+        <label for="comicName">Comic Title:</label>
         <input
           id="comicName"
           name="comicName"
           type="text"
           placeholder="(50 characters max)"
-          v-model="newComic.name"
+          v-model="newComic.title"
           required/>
       </div>
 
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import ComicService from '../services/ComicService'
 
 export default {
 name: 'add-comic-form',
@@ -55,12 +56,37 @@ data(){
 },
 methods:{
     addNewComic(){
-        return 
+        ComicService
+        .addComic(this.$store.state.user.id, this.newComic)
+        .then((response) => {if (response.status === 201) {
+            this.resetForm();
+          }
+        })
+        .catch((error) => {
+          this.handleErrorResponse(error, "adding");
+        });
+    },
+    handleErrorResponse(error, verb) {
+      if (error.response) {
+        this.errorMsg =
+          "Error " +
+          verb +
+          " comic. Response received was '" +
+          error.response.statusText +
+          "'.";
+      } else if (error.request) {
+        this.errorMsg = "Error " + verb + " comic. Server could not be reached.";
+      } else {
+        this.errorMsg =
+          "Error " + verb + " comic. Request could not be added.";
+      }
+    
     },
 
     resetForm(){
         this.newComic = {}
-    }
+    },
+
 }
 }
 </script>
