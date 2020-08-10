@@ -3,6 +3,9 @@
 
     <b-container>
       <b-row>
+        <add-comic-form></add-comic-form>
+      </b-row>
+      <b-row>
         
       <comic-card
         v-for="comic in $store.state.comics"
@@ -27,12 +30,14 @@
 <script>
 import ComicCard from "../components/ComicCard.vue";
 import collectionService from "@/services/CollectionService.js";
+import addComicForm from "../components/AddComicForm.vue";
 
 export default {
   props: ["collection"],
 
   components: {
     ComicCard,
+    addComicForm
   },
   created() {
     this.retrieveComics();
