@@ -23,4 +23,17 @@ public interface CollectionDAO {
 
 	List<Collection> viewMyCollections(Principal principal, String username);
 
+	int getNumberOfIssuesForCharacterInCollection(Principal principal, int collection_id,
+			String maincharacter);
+
+	int getNumberOfIssuesForAuthorInCollection(Principal principal, int collection_id, String author);
+
+	int getNumberOfIssuesForArtistInCollection(Principal principal, int collection_id, String artist);
+
+	int getNumberOfIssuesForCharacterInCollections(Principal principal, String maincharacter);
+
+	int getNumberOfIssuesForAuthorInCollections(Principal principal, String author);
+
+	int getNumberOfIssuesForArtistInCollections(Principal principal, String artist);
+
 }

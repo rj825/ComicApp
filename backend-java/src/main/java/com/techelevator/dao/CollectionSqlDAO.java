@@ -25,6 +25,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	@Override
 	public void createCollection(Principal principal, String collectionName, boolean isPublic) {
 		String username = principal.getName();
 		User user = userDAO.findByUsername(username);
@@ -33,6 +34,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 		jdbcTemplate.update(sql, userId, collectionName, isPublic);
 	}
 
+	@Override
 	public Collection getCollection(Long collectionId) {
 		String sql = "SELECT * FROM collections WHERE collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
@@ -53,6 +55,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	}
 
+	@Override
 	public List<String> viewCollection(Principal principal, Long collectionId) {
 		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
@@ -73,6 +76,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	}
 
+	@Override
 	public List<String> viewCollection(Long collectionId) {
 		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
@@ -90,6 +94,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	}
 
+	@Override
 	public List<Collection> viewCollections(Principal principal) {
 		String sql = "";
 //		if (principal!=null) 
@@ -111,6 +116,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	}
 
+	@Override
 	public List<Collection> viewMyCollections(Principal principal, String username) {
 		String sql = "SELECT * FROM collections WHERE collections.user_id = ?";
 		Long userId = userDAO.findByUsername(username).getId();
@@ -124,6 +130,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 		return listOfCollections;
 	}
 
+	@Override
 	public List<Collection> viewCollections() {
 		String sql = "SELECT * FROM collections WHERE collections.isPublic = TRUE";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
@@ -135,6 +142,55 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 		return listOfCollections;
 
+	}
+	
+	@Override
+	public int getNumberOfIssuesForCharacterInCollection(Principal principal, int collection_id,
+			String maincharacter) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ? AND comics.maincharacter = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {collection_id, maincharacter}, Integer.class);
+		return numberOfIssues;
+	}
+	
+	@Override
+	public int getNumberOfIssuesForAuthorInCollection(Principal principal, int collection_id, String author) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ? AND comics.author = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {collection_id, author}, Integer.class);
+		return numberOfIssues;
+	}
+
+	@Override
+	public int getNumberOfIssuesForArtistInCollection(Principal principal, int collection_id, String artist) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ? AND comics.artist = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {collection_id, artist}, Integer.class);
+		return numberOfIssues;
+	}
+
+	@Override
+	public int getNumberOfIssuesForCharacterInCollections(Principal principal, String maincharacter) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.isPublic AND comics.maincharacter = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {maincharacter}, Integer.class);
+		return numberOfIssues;
+	}
+
+	@Override
+	public int getNumberOfIssuesForAuthorInCollections(Principal principal, String author) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.isPublic AND comics.author = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {author}, Integer.class);
+		return numberOfIssues;
+	}
+
+	@Override
+	public int getNumberOfIssuesForArtistInCollections(Principal principal, String artist) {
+		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.isPublic AND comics.artist = ?";
+		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {artist}, Integer.class);
+		return numberOfIssues;
 	}
 
 }
