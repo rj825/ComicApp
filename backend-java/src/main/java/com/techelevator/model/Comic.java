@@ -17,16 +17,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Comic {
 	   private Long comicId;
-		@JsonProperty("title") //could be the same
+		
 	   private String title;
-		@JsonProperty("issueNumber")
+		
 	   private Long issue; 
-		@JsonProperty("name")
+		
 	   private String author;
-		@JsonProperty("name")
+		
 	   private String artist;
 	   private String publisher;
-	    @JsonProperty("name")
+	    
 	   private List<ComicCharacter> characters;
 	
 	 
