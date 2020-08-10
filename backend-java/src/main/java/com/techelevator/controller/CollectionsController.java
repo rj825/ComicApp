@@ -73,10 +73,10 @@ public class CollectionsController {
 		return collectionDAO.viewMyCollections(principal, username);
 	}
 	
-	@RequestMapping(value = "/collections/{collection_id}/character/{maincharacter}", method = RequestMethod.GET)
-	public int getNumberOfIssuesForCharacterInCollection(Principal principal, @PathVariable int collection_id, @PathVariable String maincharacter) {
-		return collectionDAO.getNumberOfIssuesForCharacterInCollection(principal, collection_id, maincharacter);
-	}
+//	@RequestMapping(value = "/collections/{collection_id}/character/{maincharacter}", method = RequestMethod.GET)
+//	public int getNumberOfIssuesForCharacterInCollection(Principal principal, @PathVariable int collection_id, @PathVariable String maincharacter) {
+//		return collectionDAO.getNumberOfIssuesForCharacterInCollection(principal, collection_id, maincharacter);
+//	}
 	
 	@RequestMapping(value = "/collections/{collection_id}/author/{author}", method = RequestMethod.GET)
 	public int getNumberOfIssuesForAuthorInCollection(Principal principal, @PathVariable int collection_id, @PathVariable String author) {
@@ -88,10 +88,10 @@ public class CollectionsController {
 		return collectionDAO.getNumberOfIssuesForArtistInCollection(principal, collection_id, artist);
 	}
 	
-	@RequestMapping(value = "/collections/character/{maincharacter}", method = RequestMethod.GET)
-	public int getNumberOfIssuesForCharacterInCollections(Principal principal, @PathVariable String maincharacter) {
-		return collectionDAO.getNumberOfIssuesForCharacterInCollections(principal, maincharacter);
-	}
+//	@RequestMapping(value = "/collections/character/{maincharacter}", method = RequestMethod.GET)
+//	public int getNumberOfIssuesForCharacterInCollections(Principal principal, @PathVariable String maincharacter) {
+//		return collectionDAO.getNumberOfIssuesForCharacterInCollections(principal, maincharacter);
+//	}
 	
 	@RequestMapping(value = "/collections/author/{author}", method = RequestMethod.GET)
 	public int getNumberOfIssuesForAuthorInCollections(Principal principal, @PathVariable String author) {
@@ -101,6 +101,11 @@ public class CollectionsController {
 	@RequestMapping(value = "/collections/artist/{artist}", method = RequestMethod.GET)
 	public int getNumberOfIssuesForArtistInCollections(Principal principal, @PathVariable String artist) {
 		return collectionDAO.getNumberOfIssuesForArtistInCollections(principal, artist);
+	}
+	
+	@RequestMapping(value = "/collections/{collection_id}/comic/{comic_id}", method = RequestMethod.DELETE)
+	public void removeComicFromCollection(@PathVariable int collection_id, @PathVariable int comic_id) {
+		collectionDAO.removeComicFromCollection(collection_id, comic_id);
 	}
 
 
