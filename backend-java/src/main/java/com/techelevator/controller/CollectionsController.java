@@ -102,6 +102,11 @@ public class CollectionsController {
 	public int getNumberOfIssuesForArtistInCollections(Principal principal, @PathVariable String artist) {
 		return collectionDAO.getNumberOfIssuesForArtistInCollections(principal, artist);
 	}
+	
+	@RequestMapping(value = "/collections/{collection_id}/comic/{comic_id}", method = RequestMethod.DELETE)
+	public void removeComicFromCollection(@PathVariable int collection_id, @PathVariable int comic_id) {
+		collectionDAO.removeComicFromCollection(collection_id, comic_id);
+	}
 
 
 }
