@@ -33,17 +33,6 @@
       </div>
 
       <div>
-        <label for="mainCharacter"></label>
-        <input
-          id="mainCharacter"
-          name="mainCharacter"
-          type="text"
-          placeholder="Main Character"
-          v-model="newComic.mainCharacter"
-          required/>
-      </div>
-
-      <div>
         <label for="author"></label>
         <input
           id="author"
@@ -91,7 +80,7 @@
 </template>
 
 <script>
-import ComicService from '../services/ComicService'
+import ComicService from '../services/ComicService';
 
 export default {
 name: 'add-comic-form',
@@ -102,7 +91,6 @@ data(){
         newComic:{
             title: '',
             issue: '',
-            mainCharacter: '',
             author: '',
             artist: '',
             publisher: ''
