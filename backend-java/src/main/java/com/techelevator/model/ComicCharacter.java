@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 public class ComicCharacter {
+	
 	private int characterId;
 	private String name;
 	

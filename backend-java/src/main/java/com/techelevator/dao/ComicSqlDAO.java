@@ -1,6 +1,7 @@
 package com.techelevator.dao;   
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
+import com.techelevator.model.ComicCharacter;
 import com.techelevator.model.User;
 
 @Service
@@ -40,20 +42,18 @@ public class ComicSqlDAO implements ComicDAO{
 		comic.setAuthor(rs.getString("author"));
 		comic.setArtist(rs.getString("artist"));
 		comic.setPublisher(rs.getString("publisher"));
-		comic.setMaincharacter(rs.getString("maincharacter"));
 		return comic;
 	}
 	
 	private Long getComicIdFromComicAttributes(String title, Long issue, String author,
-			String artist, String publisher, String maincharacter) {
+			String artist, String publisher) {
 		String sql = "SELECT comic_id FROM comics"
 				+ " WHERE title = ? AND" + 
 				" issue = ? AND" + 
 				" author = ? AND" + 
 				" artist = ? AND" + 
-				" publisher = ? AND" + 
-				"  maincharacter = ?;";
-		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, title, issue, author, artist, publisher, maincharacter);
+				" publisher = ?";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, title, issue, author, artist, publisher);
 		Long comicId = null;
 		if (rs.next()) {
 			comicId = rs.getLong("comic_id");
@@ -69,6 +69,7 @@ public class ComicSqlDAO implements ComicDAO{
 		Long collectionUserId = collectionDAO.getCollection(collectionId).getUserId();
 		String sql = "";
 		String sql2 = "";
+		String sql3 = "";
 		if (userId == collectionUserId) {
 		sql = "INSERT INTO comics (title, issue, author, artist, publisher, maincharacter) VALUES "
 				+ "(?, ?, ?, ?, ?, ?)";
@@ -79,9 +80,9 @@ public class ComicSqlDAO implements ComicDAO{
 		String author = comic.getAuthor();
 		String artist = comic.getArtist();
 		String publisher = comic.getPublisher();
-		String maincharacter = comic.getMaincharacter();
-		jdbcTemplate.update(sql, title, issue, author, artist, publisher, maincharacter);
-		Long comicId = getComicIdFromComicAttributes(title, issue, author, artist, publisher, maincharacter);
+		List<ComicCharacter> characters = comic.getCharacters();
+		jdbcTemplate.update(sql, title, issue, author, artist, publisher);
+		Long comicId = getComicIdFromComicAttributes(title, issue, author, artist, publisher);
 		jdbcTemplate.update(sql2, collectionId, comicId);
 	}
 	
