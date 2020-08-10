@@ -36,4 +36,6 @@ public interface CollectionDAO {
 
 	int getNumberOfIssuesForArtistInCollections(Principal principal, String artist);
 
+	void removeComicFromCollection(int collection_id, int comic_id);
+
 }
