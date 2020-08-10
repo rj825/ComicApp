@@ -3,7 +3,7 @@
 
     <b-container>
       <b-row>
-        <add-comic-form></add-comic-form>
+        <add-comic-form v-bind:collection="collection"></add-comic-form>
       </b-row>
       <b-row>
         

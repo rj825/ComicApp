@@ -9,12 +9,18 @@
             v-bind:key="collection.id"
             v-bind:collection="collection">   
             </collection-card>
+            <b-row>
+                <b-col>
+                    <add-collection></add-collection>
+                </b-col>
+            </b-row>
   </div>
 </template>
 
 <script>
 import CollectionCard from '@/components/CollectionCard'
 import CollectionService from '../services/CollectionService'
+import AddCollection from '@/components/AddCollection'
 
 
 export default {
@@ -31,7 +37,8 @@ retrieveMyCollections(username){
 },
 
 components:{
-    CollectionCard
+    CollectionCard,
+    AddCollection
 }
 }
 </script>

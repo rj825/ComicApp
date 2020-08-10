@@ -3,11 +3,11 @@
 
         <b-container>
             
-            <b-row>
+            <!-- <b-row>
                 <b-col>
                     <add-collection></add-collection>
                 </b-col>
-            </b-row>
+            </b-row> -->
 
             <b-row>
                 <collection-card
@@ -28,7 +28,7 @@
 
 <script>
 import collectionService from '../services/CollectionService';
-import AddCollection from '@/components/AddCollection'
+// import AddCollection from '@/components/AddCollection'
 import CollectionCard from '@/components/CollectionCard'
 
 
@@ -54,7 +54,7 @@ export default {
        }
    },
    components: {
-       AddCollection,
+    //    AddCollection,
        CollectionCard
    }
     

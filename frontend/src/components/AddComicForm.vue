@@ -1,7 +1,7 @@
 <template>
  <b-col>
    <div>
-      <button v-if="$store.state.token != '' && $store.state.currentUser.id == $store.state.collections.userID" v-on:click="showForm = !showForm">
+      <button v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId" v-on:click="showForm = !showForm">
         <span v-show="showForm">Hide Form</span>
         <span v-show="!showForm">Add Comic</span>
       </button>
@@ -38,7 +38,7 @@
 
 export default {
 name: 'add-comic-form',
-
+props: ['collection'],
 data(){
     return{
         showForm: false,
@@ -57,6 +57,7 @@ methods:{
     addNewComic(){
         return 
     },
+
     resetForm(){
         this.newComic = {}
     }
