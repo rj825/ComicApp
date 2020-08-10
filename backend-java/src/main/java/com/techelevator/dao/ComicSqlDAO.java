@@ -40,20 +40,18 @@ public class ComicSqlDAO implements ComicDAO{
 		comic.setAuthor(rs.getString("author"));
 		comic.setArtist(rs.getString("artist"));
 		comic.setPublisher(rs.getString("publisher"));
-		comic.setMaincharacter(rs.getString("maincharacter"));
 		return comic;
 	}
 	
 	private Long getComicIdFromComicAttributes(String title, Long issue, String author,
-			String artist, String publisher, String maincharacter) {
+			String artist, String publisher) {
 		String sql = "SELECT comic_id FROM comics"
 				+ " WHERE title = ? AND" + 
 				" issue = ? AND" + 
 				" author = ? AND" + 
 				" artist = ? AND" + 
-				" publisher = ? AND" + 
-				"  maincharacter = ?;";
-		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, title, issue, author, artist, publisher, maincharacter);
+				" publisher = ?";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, title, issue, author, artist, publisher);
 		Long comicId = null;
 		if (rs.next()) {
 			comicId = rs.getLong("comic_id");
@@ -79,9 +77,8 @@ public class ComicSqlDAO implements ComicDAO{
 		String author = comic.getAuthor();
 		String artist = comic.getArtist();
 		String publisher = comic.getPublisher();
-		String maincharacter = comic.getMaincharacter();
-		jdbcTemplate.update(sql, title, issue, author, artist, publisher, maincharacter);
-		Long comicId = getComicIdFromComicAttributes(title, issue, author, artist, publisher, maincharacter);
+		jdbcTemplate.update(sql, title, issue, author, artist, publisher);
+		Long comicId = getComicIdFromComicAttributes(title, issue, author, artist, publisher);
 		jdbcTemplate.update(sql2, collectionId, comicId);
 	}
 	
