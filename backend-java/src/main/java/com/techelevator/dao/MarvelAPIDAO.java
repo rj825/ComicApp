@@ -7,4 +7,6 @@ public interface MarvelAPIDAO {
 
 	void getComic(int id);
 	
+	
+	
 }
