@@ -10,13 +10,69 @@
     <form class="form" v-on:submit="addNewComic" v-if="showForm">
       
       <div>
-        <label for="comicName">Comic Title:</label>
+        <label for="comicName"></label>
         <input
           id="comicName"
           name="comicName"
           type="text"
-          placeholder="(50 characters max)"
+          placeholder="Title (50 characters max)"
           v-model="newComic.title"
+          required/>
+      </div>
+
+      <div>
+        <label for="issueNumber"></label>
+        <input
+          id="issueNumber"
+          name="issueNumber"
+          type="number"
+          min="0"
+          placeholder="Issue Number"
+          v-model="newComic.issue"
+          required/>
+      </div>
+
+      <div>
+        <label for="mainCharacter"></label>
+        <input
+          id="mainCharacter"
+          name="mainCharacter"
+          type="text"
+          placeholder="Main Character"
+          v-model="newComic.mainCharacter"
+          required/>
+      </div>
+
+      <div>
+        <label for="author"></label>
+        <input
+          id="author"
+          name="author"
+          type="text"
+          placeholder="Author"
+          v-model="newComic.author"
+          required/>
+      </div>
+
+      <div>
+        <label for="artist"></label>
+        <input
+          id="artist"
+          name="artist"
+          type="text"
+          placeholder="Artist"
+          v-model="newComic.artist"
+          required/>
+      </div>
+
+      <div>
+        <label for="publisher"></label>
+        <input
+          id="publisher"
+          name="publisher"
+          type="text"
+          placeholder="Publisher"
+          v-model="newComic.publisher"
           required/>
       </div>
 
