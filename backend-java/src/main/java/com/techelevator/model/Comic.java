@@ -1,14 +1,21 @@
 package com.techelevator.model;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Comic {
-		@JsonProperty("id")
 	   private Long comicId;
 		@JsonProperty("title") //could be the same
 	   private String title;
@@ -95,6 +102,51 @@ public class Comic {
 	public void setMaincharacter(String maincharacter) {
 		this.maincharacter = maincharacter;
 	}
-
-
+	
+	@SuppressWarnings("unchecked")
+	@JsonProperty("data")
+	public void unpackNested(Map<String,Object> results) {
+		//IF WE MOVE OUT OF COMIC CLASS CHANGE THIS.* TO SETTER
+		this.publisher = "Marvel";//CHANGE IF MOVED
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> data = (Map<String,Object>) results.get("data");
+		List<Object> comics = (List<Object>) data.get("results");
+		//I currently get 0 index because I only want the first one
+		//for all matches you could iterate through the list using for each
+		Map<String, Object> comicMap = (Map<String, Object>) comics.get(0);
+		this.title = (String) comicMap.get("title");//CHANGE IF MOVED
+		Integer issueNumber = (Integer) comicMap.get("issueNumber");
+		this.issue = issueNumber.longValue();//CHANGE IF MOVED
+		Map<String, Object> creators = (Map<String,Object>)comicMap.get("creators");
+		List<Object> creatorsFullMap = (List<Object>)creators.get("items");
+		for (Object creator:creatorsFullMap) {
+			Map<String,String> creatorMap = (LinkedHashMap<String,String>) creator;
+			if (creatorMap.get("role").contains("penciller") && this.artist == null) {
+				this.artist = (String) creatorMap.get("name");//CHANGE IF MOVED
+			}
+			if (creatorMap.get("role").matches("writer") && this.author == null) {
+				this.author = (String) creatorMap.get("name");//CHANGE IF MOVED
+			}
+		
+		}
+		Map<String,Object> characters = (Map<String,Object>)comicMap.get("characters");
+		List<Object> charactersFullMap = (List<Object>)characters.get("items");
+		for (Object character:charactersFullMap) {
+			Map<String,String> characterMap = (LinkedHashMap<String,String>) character;
+			if (this.maincharacter == null) {
+				this.maincharacter = (String) characterMap.get("name");//CHANGE IF MOVED
+			}
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String comicString = "title = "+this.title+
+							"/n issue = "+this.issue+
+							"/n author = "+this.author+
+							"/n artist = "+this.artist+
+							"/n character = "+this.maincharacter;
+		return comicString;
+		
+	}
 }

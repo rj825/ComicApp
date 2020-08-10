@@ -24,19 +24,19 @@ export default new Vuex.Store({
       {
         name: "Jacob's Collection",
         id: 1,
-        userID: 1,
+        userId: 1,
         public: true
     },
     {
       name: "Ben's Collection",
       id: 2,
-      userID: 2,
+      userId: 2,
       public: true
   },
   {
     name: "Randy's Collection",
     id: 3,
-    userID: 3,
+    userId: 3,
     public: true
 },
     ],

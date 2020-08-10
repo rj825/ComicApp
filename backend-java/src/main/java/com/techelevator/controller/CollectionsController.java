@@ -103,4 +103,5 @@ public class CollectionsController {
 		return collectionDAO.getNumberOfIssuesForArtistInCollections(principal, artist);
 	}
 
+
 }
