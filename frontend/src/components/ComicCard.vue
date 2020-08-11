@@ -48,7 +48,7 @@ export default {
         if (confirm('Are you sure?'))
             CollectionService.deleteComicFromCollection(this.collection.collectionId, this.comic.comicId)
             .then((response) => {if (response.status === 200) {
-                    this.$router.go(0);
+                    this.$router.go();
                 }
             });
     }

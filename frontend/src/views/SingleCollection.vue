@@ -72,7 +72,7 @@ export default {
   methods: {
     retrieveComics() {
       collectionService
-        .singleCollection(this.collection.collectionId)
+        .singleCollection(this.$route.params.id)
         .then((response) => {
           this.$store.commit("SET_COMICS", response.data);
         });
