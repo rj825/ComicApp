@@ -44,7 +44,7 @@
                             </template>
 
                             <b-dropdown-item>
-                                <router-link  v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
+                                <router-link v-if="$store.state.token != ''" v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
                             </b-dropdown-item>
                             <b-dropdown-item>
                                 <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>

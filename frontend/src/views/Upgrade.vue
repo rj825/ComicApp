@@ -1,6 +1,6 @@
 <template>
   <div>
-      <button v-on:click="upgradeUser">Upgrade</button>
+      <button v-if="$store.state.token != null" v-on:click="upgradeUser">Upgrade</button>
       <div v-show="isSuccesful">SUCCESS!</div>
       <div v-show="errorMessage != ''">{{errorMessage}}</div>
   </div>
