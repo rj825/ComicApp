@@ -52,12 +52,20 @@ public class CollectionsController {
 	collectionDAO.createCollection(principal, collection.getName(), collection.isPublicCollection());
 				}
 
-	@RequestMapping(value = "/collections/{collectionId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/collections/{collectionId}/comics", method = RequestMethod.GET)
 	public List<Comic> viewCollection(Principal principal, @PathVariable Long collectionId) {
 		if (principal == null) {
 			return collectionDAO.viewCollection(collectionId);
 		}
 		return collectionDAO.viewCollection(principal, collectionId);
+	}
+	
+	@RequestMapping(value = "/collections/{collectionId}", method = RequestMethod.GET)
+	public Collection getCollection(Principal principal, @PathVariable Long collectionId) {
+		if (principal == null) {
+			return collectionDAO.getCollection(collectionId);
+		}
+		return collectionDAO.getCollection(collectionId);
 	}
 
 	@RequestMapping(value = "/collections", method = RequestMethod.GET)
