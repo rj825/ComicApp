@@ -8,7 +8,7 @@
       </b-row>
       
       <b-row>
-        <add-comic-form v-if="limitNotHit" v-bind:collection="collection"></add-comic-form>
+        <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
         <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
 
@@ -17,7 +17,7 @@
         v-for="comic in $store.state.comics"
         v-bind:key="comic.comicId"
         v-bind:comic="comic"
-        v-bind:collection="collection"
+        v-bind:collection="collection[0]"
       ></comic-card>
       </b-row>
 
@@ -55,10 +55,11 @@ export default {
     addComicForm
   },
   created() {
+    this.getCollection(this.$route.params.id);
     this.retrieveComics();
     this.getArtistStat();
     this.getAuthorStat();
-    this.getCollection(this.$route.params.id);
+    
     
   },
   computed: {
@@ -83,13 +84,13 @@ export default {
     },
     getArtistStat() {
         let newArtist = this.artist.replace(/ /g,'-');
-        collectionService.singleCollectionArtistStats(this.collection.collectionId, newArtist).then((response) => {
+        collectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist).then((response) => {
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
     getAuthorStat() {
         let newAuthor = this.author.replace(/ /g,'-');
-        collectionService.singleCollectionAuthorStats(this.collection.collectionId, newAuthor).then((response) => {
+        collectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor).then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
     },
