@@ -8,10 +8,10 @@
       </b-row>
       
       <b-row>
-        <add-comic-form v-bind:collection="collection"></add-comic-form>
+        <add-comic-form v-if="limitNotHit" v-bind:collection="collection"></add-comic-form>
+        <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
-      <b-row>
-        
+      <b-row>  
       <comic-card
         v-for="comic in $store.state.comics"
         v-bind:key="comic.comicId"
@@ -45,6 +45,7 @@ export default {
     return {
       author: 'Alan Moore',
       artist: 'Declan Shalvey'
+      
     }
   },
   components: {
@@ -55,6 +56,18 @@ export default {
     this.retrieveComics();
     this.getArtistStat();
     this.getAuthorStat();
+  },
+  computed: {
+    limitNotHit() {
+      let premiumBoolean = (this.$store.state.user.authorities[0].name === "ROLE_PREMIUM")
+      let count = 0;
+      this.$store.state.comics.forEach(() => {
+        count+=1;
+      });
+
+      return (premiumBoolean || (count < 5))
+    }
+
   },
   methods: {
     retrieveComics() {
