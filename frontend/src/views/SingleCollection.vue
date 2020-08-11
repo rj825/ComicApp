@@ -46,7 +46,7 @@ export default {
     return {
       author: 'Alan Moore',
       artist: 'Declan Shalvey',
-      collection: {}
+      collection: ''
       
     }
   },
@@ -55,10 +55,11 @@ export default {
     addComicForm
   },
   created() {
+    this.getCollection(this.$route.params.id);
     this.retrieveComics();
     this.getArtistStat();
     this.getAuthorStat();
-    this.getCollection(this.$route.params.id);
+    
     
   },
   computed: {
