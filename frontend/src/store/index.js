@@ -22,22 +22,10 @@ export default new Vuex.Store({
     user: currentUser || {},
     collections: [
       {
-        name: "Jacob's Collection",
-        id: 1,
-        userId: 1,
-        public: true
-      },
-      {
-        name: "Ben's Collection",
-        id: 2,
-        userId: 2,
-        public: true
-      },
-      {
-        name: "Randy's Collection",
-        id: 3,
-        userId: 3,
-        public: true
+        collectionId: '',
+        name: '',
+        userId: '',
+        publicCollection: false
       },
     ],
     comics: [],

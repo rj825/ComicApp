@@ -11,6 +11,7 @@
         <add-comic-form v-if="limitNotHit" v-bind:collection="collection"></add-comic-form>
         <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
+
       <b-row>  
       <comic-card
         v-for="comic in $store.state.comics"
@@ -39,12 +40,13 @@ import collectionService from "@/services/CollectionService.js";
 import addComicForm from "../components/AddComicForm.vue";
 
 export default {
-  props: ["collection"],
+  
 
   data() {
     return {
       author: 'Alan Moore',
-      artist: 'Declan Shalvey'
+      artist: 'Declan Shalvey',
+      collection: {}
       
     }
   },
@@ -56,6 +58,8 @@ export default {
     this.retrieveComics();
     this.getArtistStat();
     this.getAuthorStat();
+    this.getCollection(this.$route.params.id);
+    
   },
   computed: {
     limitNotHit() {
@@ -88,6 +92,11 @@ export default {
         collectionService.singleCollectionAuthorStats(this.collection.collectionId, newAuthor).then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
+    },
+    getCollection(id) {
+      this.collection = this.$store.state.collections.filter(collection => {
+        return collection.collectionId === id;
+      }) 
     }
   },
 };
