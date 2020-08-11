@@ -7,12 +7,7 @@
         <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
         <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
-<<<<<<< HEAD
       <b-row class="slide-right">  
-=======
-
-      <b-row>  
->>>>>>> 485f439d756657b5e4be70c24330f4b5abdbea4c
       <comic-card
         v-for="comic in $store.state.comics"
         v-bind:key="comic.comicId"
@@ -31,11 +26,10 @@
 
 
 
-<<<<<<< HEAD
     
-=======
+
     <div>{{collection[0].name}}</div>
->>>>>>> 485f439d756657b5e4be70c24330f4b5abdbea4c
+
     
 
 
