@@ -1,7 +1,7 @@
 <template>
  <b-col>
    <div>
-      <button v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId" v-on:click="showForm = !showForm">
+      <button type="button" class="btn btn-warning" v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId" v-on:click="showForm = !showForm">
         <span v-show="showForm">Hide Form</span>
         <span v-show="!showForm">Add Comic</span>
       </button>
