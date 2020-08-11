@@ -2,36 +2,31 @@
   <div>
     
     <b-container>
-      <div class="bangers">{{collection.name}}</div>
-      <b-row>
-        <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
-        <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
-      </b-row>
+      
+        <b-row>
+          <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
+          <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
+        </b-row>
+
       <b-row class="slide-right">  
-      <comic-card
-        v-for="comic in $store.state.comics"
-        v-bind:key="comic.comicId"
-        v-bind:comic="comic"
-        v-bind:collection="collection[0]"
-      ></comic-card>
+        <comic-card
+          v-for="comic in $store.state.comics"
+          v-bind:key="comic.comicId"
+          v-bind:comic="comic"
+          v-bind:collection="collection[0]"
+        ></comic-card>
       </b-row>
+
+      
+
       <div class="slide-left">
-      <b-row align-h="center">
-        Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
-        Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
-      </b-row>
+        <b-row align-h="center">
+          Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
+          Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
+        </b-row>
      </div> 
       
     </b-container>
-
-
-
-    
-
-    <div>{{collection[0].name}}</div>
-
-    
-
 
   </div>
 </template>

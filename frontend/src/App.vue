@@ -48,7 +48,7 @@ body, html {
   width: 100%;
   height: auto;
   vertical-align: middle;
-  background-image: url("./assets/baw-comic-light.jpg");
+  /* background-image: url("./assets/baw-comic-light.jpg"); */
    background-position: 50% 50%;
    background-repeat: no-repeat;
    background-size: cover;
@@ -56,7 +56,7 @@ body, html {
 
 
 #app {
-  background-image: url("./assets/baw-comic-light.jpg");
+  background-image: url("./assets/baw-comic-warm-fade.jpg");
   background-size: cover;
   background-position: top;
   height: 100vh;
@@ -66,7 +66,13 @@ body, html {
 https://coolors.co/b22222-236581-5bc0de-ffff66-402039 */
 
 
-
+/* #nav {
+  grid-area: navbar;
+  background-color: #236581;
+  border: solid 2px black;
+  border-radius: 10px;
+  
+} */
 
 
 

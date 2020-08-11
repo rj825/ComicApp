@@ -16,6 +16,7 @@
             img-src="@/assets/sample-comic-cover.png">
             Stats Side
             </b-card>
+            
             <div>
                 <button type="button" class="btn btn-danger btn-sm" 
                 v-on:click="deleteComic()"
