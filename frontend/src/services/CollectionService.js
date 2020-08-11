@@ -29,6 +29,6 @@ allCollectionsArtistStats(artist) {
 },
 
 allCollectionsAuthorStats(author) {
-    return axios.get(`/collections/artist/${author}`)
+    return axios.get(`/collections/author/${author}`)
 }
 }
