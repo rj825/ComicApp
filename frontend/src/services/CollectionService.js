@@ -30,5 +30,9 @@ allCollectionsArtistStats(artist) {
 
 allCollectionsAuthorStats(author) {
     return axios.get(`/collections/author/${author}`)
+},
+
+deleteComicFromCollection(collectionId, comicId) {
+    return axios.delete(`/collections/${collectionId}/comic/${comicId}`)
 }
 }
