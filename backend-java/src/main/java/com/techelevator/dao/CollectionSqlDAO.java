@@ -13,12 +13,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
 import com.techelevator.model.User;
 
 @Service
 public class CollectionSqlDAO implements CollectionDAO {
 	private JdbcTemplate jdbcTemplate;
 	private UserDAO userDAO;
+
 
 	public CollectionSqlDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
 		this.userDAO = userDAO;
@@ -44,7 +46,17 @@ public class CollectionSqlDAO implements CollectionDAO {
 			return null;
 		}
 	}
-
+	
+	private Comic mapRowToComic(SqlRowSet rs) {
+		Comic comic = new Comic();
+		comic.setTitle(rs.getString("title"));
+		comic.setIssue(rs.getLong("issue"));
+		comic.setAuthor(rs.getString("author"));
+		comic.setArtist(rs.getString("artist"));
+		comic.setPublisher(rs.getString("publisher"));
+		return comic;
+	}
+	
 	private Collection mapRowToCollection(SqlRowSet rs) {
 		Collection collection = new Collection();
 		collection.setCollectionId(rs.getLong("collection_id"));
@@ -56,13 +68,13 @@ public class CollectionSqlDAO implements CollectionDAO {
 	}
 
 	@Override
-	public List<String> viewCollection(Principal principal, Long collectionId) {
-		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+	public List<Comic> viewCollection(Principal principal, Long collectionId) {
+		String sql = "SELECT comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
-		List<String> listOfComics = new ArrayList<String>();
+		List<Comic> listOfComics = new ArrayList<Comic>();
 		while (rs.next()) {
-			listOfComics.add(rs.getString("title"));
+			listOfComics.add(mapRowToComic(rs));
 		}
 
 		Long collectionUserId = getCollection(collectionId).getUserId();
@@ -77,13 +89,13 @@ public class CollectionSqlDAO implements CollectionDAO {
 	}
 
 	@Override
-	public List<String> viewCollection(Long collectionId) {
-		String sql = "SELECT comics.title FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+	public List<Comic> viewCollection(Long collectionId) {
+		String sql = "SELECT comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
-		List<String> listOfComics = new ArrayList<String>();
+		List<Comic> listOfComics = new ArrayList<Comic>();
 		while (rs.next()) {
-			listOfComics.add(rs.getString("title"));
+			listOfComics.add(mapRowToComic(rs));
 		}
 
 		if (getCollection(collectionId).isPublicCollection()) {

@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.util.List;
 
 import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
 import com.techelevator.model.User;
 
 public interface CollectionDAO {
@@ -13,9 +14,9 @@ public interface CollectionDAO {
 
 	Collection getCollection(Long collectionId);
 
-	List<String> viewCollection(Principal principal, Long collectionId);
+	List<Comic> viewCollection(Principal principal, Long collectionId);
 
-	List<String> viewCollection(Long collectionId);
+	List<Comic> viewCollection(Long collectionId);
 
 	List<Collection> viewCollections(Principal principal);
 
