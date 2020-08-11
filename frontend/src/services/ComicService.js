@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default {
 
-addComic(id, comic){
+addComic(comic){
     return axios.post(`/collections/${id}/add`, comic)
 
 
