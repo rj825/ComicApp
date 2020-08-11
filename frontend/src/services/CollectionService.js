@@ -9,7 +9,7 @@ allCollections(){
     return axios.get('/collections')
 },
 singleCollection(id){
-    return axios.get(`/collections/${id}`)
+    return axios.get(`/collections/${id}/comics`)
 },
 
 myCollections(username){

@@ -4,15 +4,20 @@
     <b-container>
       <div class="bangers">{{collection.name}}</div>
       <b-row>
-        <add-comic-form v-if="limitNotHit" v-bind:collection="collection"></add-comic-form>
+        <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
         <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
+<<<<<<< HEAD
       <b-row class="slide-right">  
+=======
+
+      <b-row>  
+>>>>>>> 485f439d756657b5e4be70c24330f4b5abdbea4c
       <comic-card
         v-for="comic in $store.state.comics"
         v-bind:key="comic.comicId"
         v-bind:comic="comic"
-        v-bind:collection="collection"
+        v-bind:collection="collection[0]"
       ></comic-card>
       </b-row>
       <div class="slide-left">
@@ -26,7 +31,11 @@
 
 
 
+<<<<<<< HEAD
     
+=======
+    <div>{{collection[0].name}}</div>
+>>>>>>> 485f439d756657b5e4be70c24330f4b5abdbea4c
     
 
 
@@ -41,12 +50,13 @@ import collectionService from "@/services/CollectionService.js";
 import addComicForm from "../components/AddComicForm.vue";
 
 export default {
-  props: ["collection"],
+  
 
   data() {
     return {
       author: 'Alan Moore',
-      artist: 'Declan Shalvey'
+      artist: 'Declan Shalvey',
+      collection: {}
       
     }
   },
@@ -55,9 +65,12 @@ export default {
     addComicForm
   },
   created() {
+    this.getCollection(this.$route.params.id);
     this.retrieveComics();
     this.getArtistStat();
     this.getAuthorStat();
+    
+    
   },
   computed: {
     limitNotHit() {
@@ -81,15 +94,20 @@ export default {
     },
     getArtistStat() {
         let newArtist = this.artist.replace(/ /g,'-');
-        collectionService.singleCollectionArtistStats(this.collection.collectionId, newArtist).then((response) => {
+        collectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist).then((response) => {
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
     getAuthorStat() {
         let newAuthor = this.author.replace(/ /g,'-');
-        collectionService.singleCollectionAuthorStats(this.collection.collectionId, newAuthor).then((response) => {
+        collectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor).then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
+    },
+    getCollection(id) {
+      this.collection = this.$store.state.collections.filter(collection => {
+        return collection.collectionId === id;
+      }) 
     }
   },
 };
