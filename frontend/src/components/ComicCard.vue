@@ -6,7 +6,8 @@
             v-if="frontFacing"
             v-on:click="flipCard"
             img-src="@/assets/sample-comic-cover.png">
-            {{comic}}
+            {{comic.title}}
+            {{comic.issue}}
             </b-card>
 
             <b-card

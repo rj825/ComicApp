@@ -49,6 +49,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 	
 	private Comic mapRowToComic(SqlRowSet rs) {
 		Comic comic = new Comic();
+		comic.setComicId(rs.getLong("comic_id"));
 		comic.setTitle(rs.getString("title"));
 		comic.setIssue(rs.getLong("issue"));
 		comic.setAuthor(rs.getString("author"));
@@ -69,7 +70,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public List<Comic> viewCollection(Principal principal, Long collectionId) {
-		String sql = "SELECT comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+		String sql = "SELECT comic.comic_id, comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
 		List<Comic> listOfComics = new ArrayList<Comic>();
@@ -90,7 +91,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public List<Comic> viewCollection(Long collectionId) {
-		String sql = "SELECT comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+		String sql = "SELECT comic.comic_id, comics.title, comic.issue, comic.author, comic.artist, comic.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
 		List<Comic> listOfComics = new ArrayList<Comic>();
