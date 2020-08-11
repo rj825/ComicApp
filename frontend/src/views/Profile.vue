@@ -1,20 +1,26 @@
 <template>
 
 
-  <div>
-      <div>
-          Your User Name Is {{$store.state.user.username}}
-      </div>
-            <collection-card v-for="collection in $store.state.collections"
+  <b-container>
+      <b-row>
+        {{$store.state.user.username}}'s Collection
+      </b-row>
+      <b-row>
+        <b-col>
+            <add-collection></add-collection>
+        </b-col>
+     </b-row>
+     <b-row>
+        <collection-card v-for="collection in $store.state.collections"
             v-bind:key="collection.id"
             v-bind:collection="collection">   
-            </collection-card>
-            <b-row>
-                <b-col>
-                    <add-collection></add-collection>
-                </b-col>
-            </b-row>
-  </div>
+        </collection-card>
+     </b-row>
+            
+            
+  </b-container>
+      
+  
 </template>
 
 <script>

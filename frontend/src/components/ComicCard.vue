@@ -1,6 +1,6 @@
 <template>
     
-        <b-col cols="4" no-body="true" class="whole-comic">
+        <b-col cols="3" no-body="true" class="whole-comic">
 
             <b-card
             v-if="frontFacing"

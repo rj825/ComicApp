@@ -2,19 +2,21 @@
   <div>
 
     <b-container>
-      Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
-      Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
+      <b-row align-h="center">
+        Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
+        Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
+      </b-row>
+      
       <b-row>
         <add-comic-form v-bind:collection="collection"></add-comic-form>
       </b-row>
-      <b-row>
-        
-      <comic-card
-        v-for="comic in $store.state.comics"
-        v-bind:key="comic.comicId"
-        v-bind:comic="comic"
-      ></comic-card>
 
+      <b-row>
+        <comic-card
+          v-for="comic in $store.state.comics"
+          v-bind:key="comic.comicId"
+          v-bind:comic="comic"
+        ></comic-card>
       </b-row>
     </b-container>
 
