@@ -7,7 +7,7 @@
       </button>
     </div>
       
-    <form class="form" v-on:submit="addNewComic" v-if="showForm">
+    <form class="form" v-on:submit.prevent="addNewComic" v-if="showForm">
       
       <div>
         <label for="comicName"></label>
@@ -104,6 +104,7 @@ methods:{
         .addComic(this.collection.collectionId, this.newComic)
         .then((response) => {if (response.status === 201) {
             this.resetForm();
+            this.$router.push({ name: 'collection-detail', params: {id: this.collection.collectionId}});
           }
         })
         .catch((error) => {
