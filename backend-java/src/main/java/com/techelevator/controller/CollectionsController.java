@@ -22,6 +22,7 @@ import com.sun.el.stream.Optional;
 import com.techelevator.dao.CollectionDAO;
 import com.techelevator.dao.UserDAO;
 import com.techelevator.model.Collection;
+import com.techelevator.model.Comic;
 import com.techelevator.model.LoginDTO;
 import com.techelevator.model.RegisterUserDTO;
 import com.techelevator.model.User;
@@ -52,7 +53,7 @@ public class CollectionsController {
 				}
 
 	@RequestMapping(value = "/collections/{collectionId}", method = RequestMethod.GET)
-	public List<String> viewCollection(Principal principal, @PathVariable Long collectionId) {
+	public List<Comic> viewCollection(Principal principal, @PathVariable Long collectionId) {
 		if (principal == null) {
 			return collectionDAO.viewCollection(collectionId);
 		}

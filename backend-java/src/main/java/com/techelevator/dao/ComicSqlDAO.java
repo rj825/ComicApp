@@ -35,7 +35,8 @@ public class ComicSqlDAO implements ComicDAO{
 		return comic;
 	}
 	
-	private Comic mapRowToComic(SqlRowSet rs) {
+	@Override
+	public Comic mapRowToComic(SqlRowSet rs) {
 		Comic comic = new Comic();
 		comic.setTitle(rs.getString("title"));
 		comic.setIssue(rs.getLong("issue"));
