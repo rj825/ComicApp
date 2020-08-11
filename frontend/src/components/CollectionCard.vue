@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         goToIndividualCollection() {
-            this.$router.push({name: 'collection-detail' , params: {id: this.collection.collectionId, collection:this.collection}});
+            this.$router.push({name: 'collection-detail' , params: {id: this.collection.collectionId}});
         }
     }
 }
