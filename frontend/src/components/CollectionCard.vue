@@ -1,17 +1,40 @@
 <template>
-    <b-col cols="2" class="whole-collection shadow-lg">
-        <router-link
-            :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
-        <div>
-            {{collection.name}}
-        </div>
-        <div>
-            Collection ID: {{collection.collectionId}}
-        </div>
-        <div>
-            User ID: {{collection.userId}}
-        </div>
-        </router-link>
+    <b-col cols="4" class="whole-collection shadow-lg">
+        
+        
+        
+            <b-card
+            v-on:click="goToIndividualCollection"
+            img-src="@/assets/comic-background-fade.png"
+            overlay
+            v-bind:title="collection.name"
+            v-bind:footer="collection.collectionId"
+            >
+            
+
+            
+            </b-card>
+        
+        <!-- Collection ID: {{collection.collectionId}} <br>
+            User ID: {{collection.userId}} -->
+        
+        <!-------OLD CODE BELOW, KEEPING AS REFERENCE AS FUNCTIONALITY------->
+
+        <!-- <b-col>
+            <router-link
+                :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
+            <div>
+                {{collection.name}}
+            </div>
+            <div>
+                Collection ID: {{collection.collectionId}}
+            </div>
+            <div>
+                User ID: {{collection.userId}}
+            </div>
+            </router-link>
+        </b-col> -->
+        
 
     </b-col>
 </template>
@@ -27,6 +50,11 @@ export default {
             
             
         }
+    },
+    methods: {
+        goToIndividualCollection() {
+            this.$router.push({name: 'collection-detail' , params: {id: this.collection.collectionId, collection:this.collection}});
+        }
     }
 }
 </script>
@@ -36,12 +64,10 @@ export default {
 .whole-collection {
     text-decoration: none;
     font-family: "Bangers";
-    display: inline-block;
-    border: 25px;
-    border: solid 2.5px black;
-    border-radius: 10px;
-    margin: 5px;
-    background-color: firebrick;
+    font-size: 2vw;
+    cursor: pointer;
 }
+
+
 
 </style>

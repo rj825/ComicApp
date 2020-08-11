@@ -1,21 +1,30 @@
 <template>
-  <b-col cols="4" no-body="true" class="whole-comic">
-    <b-card v-if="frontFacing" v-on:click="flipCard" img-src="@/assets/sample-comic-cover.png">
-      {{comic.title}}
-      {{comic.issue}}
-    </b-card>
+    
+        <b-col cols="3" no-body="true" class="whole-comic">
 
-    <b-card
-      v-if="!frontFacing"
-      v-on:click="flipCard"
-      img-src="@/assets/sample-comic-cover.png"
-    >Stats Side</b-card>
-    <div>
-      <button type="button" class="btn btn-danger"
-      v-on:click="deleteComic()"
-      v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId">Delete Comic From Collection</button>
-    </div>
-    <br />
+            <b-card
+            v-if="frontFacing"
+            v-on:click="flipCard"
+            img-src="@/assets/sample-comic-cover.png">
+            {{comic.title}}
+            {{comic.issue}}
+            </b-card>
+
+            <b-card
+            v-if="!frontFacing"
+            v-on:click="flipCard"
+            img-src="@/assets/sample-comic-cover.png">
+            Stats Side
+            </b-card>
+            <div>
+                <button type="button" class="btn btn-danger"
+                v-on:click="deleteComic()"
+                v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId">
+                    Delete Comic From Collection
+                </button>
+            </div>
+            <br>
+
 
     
   </b-col>

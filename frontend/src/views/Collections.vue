@@ -1,14 +1,12 @@
 <template>
   <div class="collections">
     <b-container>
+      <b-row align-h="center">
         Number of comics written by Alan Moore in all public collections is: {{$store.state.authorStat}} <br/>
         Number of comics drawn by Declan Shalvey in all public collections is: {{$store.state.artistStat}}
-      <!-- <b-row>
-                <b-col>
-                    <add-collection></add-collection>
-                </b-col>
-      </b-row>-->
-
+      </b-row>
+        
+      
       <b-row>
         <collection-card
           class="collection-card"
