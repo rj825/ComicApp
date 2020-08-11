@@ -18,14 +18,8 @@
         v-bind:comic="comic"
         v-bind:collection="collection"
       ></comic-card>
-
-      <b-row>
-        <comic-card
-          v-for="comic in $store.state.comics"
-          v-bind:key="comic.comicId"
-          v-bind:comic="comic"
-        ></comic-card>
       </b-row>
+
     </b-container>
 
 
