@@ -17,10 +17,10 @@
             Stats Side
             </b-card>
             <div>
-                <button type="button" class="btn btn-danger"
+                <button type="button" class="btn btn-danger btn-sm" 
                 v-on:click="deleteComic()"
                 v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId">
-                    Delete Comic From Collection
+                    Delete Comic
                 </button>
             </div>
             <br>

@@ -1,17 +1,13 @@
 <template>
   <div>
-
+    
     <b-container>
-      <b-row align-h="center">
-        Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
-        Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
-      </b-row>
-      
+      <div class="bangers">{{collection.name}}</div>
       <b-row>
         <add-comic-form v-if="limitNotHit" v-bind:collection="collection"></add-comic-form>
         <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
       </b-row>
-      <b-row>  
+      <b-row class="slide-right">  
       <comic-card
         v-for="comic in $store.state.comics"
         v-bind:key="comic.comicId"
@@ -19,12 +15,18 @@
         v-bind:collection="collection"
       ></comic-card>
       </b-row>
-
+      <div class="slide-left">
+      <b-row align-h="center">
+        Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
+        Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
+      </b-row>
+     </div> 
+      
     </b-container>
 
 
 
-    <div>{{collection.name}}</div>
+    
     
 
 
@@ -97,4 +99,44 @@ export default {
 
 
 <style>
+.bangers{
+  font: 2em bangers;
+  text-align: center;
+}
+
+ .slide-left{
+  animation-duration: 2s;
+  animation-name: slide-left;
+  font: 1.3em bangers;
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+ .slide-right{
+  animation-duration: 1s;
+  animation-name: slide-right;
+  font: 1em bangers;
+}
+
+
+  @keyframes slide-right {
+  from {
+    margin-left: -100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
 </style>
