@@ -1,13 +1,24 @@
 <template>
     
         <b-col cols="4" no-body="true" class="whole-comic">
+
             <b-card
+            v-if="frontFacing"
+            v-on:click="flipCard"
             img-src="@/assets/sample-comic-cover.png">
             {{comic}}
-            
             </b-card>
 
-            
+            <b-card
+            v-if="!frontFacing"
+            v-on:click="flipCard"
+            img-src="@/assets/sample-comic-cover.png">
+            Stats Side
+            </b-card>
+
+            <br>
+
+
         </b-col>
         
     
@@ -20,9 +31,14 @@ export default {
     props: ['comic'],
     data(){
         return {
+            frontFacing: true
             
             
-            
+        }
+    },
+    methods: {
+        flipCard() {
+            this.frontFacing = !this.frontFacing
         }
     }
 }
@@ -33,6 +49,14 @@ export default {
 .whole-comic {
     text-decoration: none;
     font-family: "Bangers";
+    font-size: 2vw;
+    
+    
 }
+
+
+
+
+
 
 </style>
