@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -26,24 +26,28 @@ export default new Vuex.Store({
         id: 1,
         userId: 1,
         public: true
-    },
-    {
-      name: "Ben's Collection",
-      id: 2,
-      userId: 2,
-      public: true
-  },
-  {
-    name: "Randy's Collection",
-    id: 3,
-    userId: 3,
-    public: true
-},
+      },
+      {
+        name: "Ben's Collection",
+        id: 2,
+        userId: 2,
+        public: true
+      },
+      {
+        name: "Randy's Collection",
+        id: 3,
+        userId: 3,
+        public: true
+      },
     ],
-    comics: []
-    
+    comics: [],
+
+    artistStat: '',
+
+    authorStat: ''
+
   },
- 
+
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -52,7 +56,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -61,11 +65,17 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_COLLECTIONS(state, data){
+    SET_COLLECTIONS(state, data) {
       state.collections = data;
     },
     SET_COMICS(state, data) {
       state.comics = data;
+    },
+    SET_ARTIST_STAT(state, data) {
+      state.artistStat = data;
+    },
+    SET_AUTHOR_STAT(state, data) {
+      state.authorStat = data;
     }
   }
 })

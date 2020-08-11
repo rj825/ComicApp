@@ -101,7 +101,7 @@ data(){
 methods:{
     addNewComic(){
         ComicService
-        .addComic(this.$store.state.user.id, this.newComic)
+        .addComic(this.collection.collectionId, this.newComic)
         .then((response) => {if (response.status === 201) {
             this.resetForm();
           }
