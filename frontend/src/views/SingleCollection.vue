@@ -25,7 +25,7 @@
 
 
 
-    <div>{{collection.name}}</div>
+    <div>{{collection[0].name}}</div>
     
 
 
