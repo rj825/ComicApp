@@ -12,10 +12,10 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item>
-                        <router-link v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">Profile</router-link>
+                        <router-link v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">My Collection</router-link>
                     </b-nav-item>
                     <b-nav-item>
-                        <router-link v-bind:to="{ name: 'collections' }">Collections</router-link>
+                        <router-link v-bind:to="{ name: 'collections' }">Public Collections</router-link>
                     </b-nav-item>
                 </b-navbar-nav>
 
