@@ -18,6 +18,8 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techelevator.model.Collection;
 import com.techelevator.model.Comic;
@@ -38,13 +40,22 @@ public class MarvelAPISqlDAO implements MarvelAPIDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String,Object> getComic(int upc) {
-		ResponseEntity<Map> response = restTemplate.getForEntity(
-		                "https://gateway.marvel.com/v1/public/comics?"
-		                + "apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&"
-		                + "upc=" + upc, 
-		                Map.class); // Make GET request using Client
-		Map<String, Object> results = (Map<String, Object>) response.getBody();
+	public Map<String,Object> getComic(String upc) {
+		ResponseEntity<String> response = restTemplate.getForEntity("https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=" + upc, 
+		                String.class); // Make GET request using Client
+		String jsonResult = response.getBody();
+		ObjectMapper mapper = new ObjectMapper();
+		Map<String, Object> results = null;
+		try {
+			results = mapper.readValue(jsonResult, Map.class);
+			System.out.println("WEDIDIT");
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return results;
 		
 	}

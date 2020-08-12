@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import java.io.Console;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import com.techelevator.dao.ComicDAO;
 import com.techelevator.dao.MarvelAPIDAO;
@@ -57,9 +58,10 @@ public class MarvelAPIController {
 	
 
 	@RequestMapping(value = "/comics/marvel/{upc}", method = RequestMethod.GET)
-	public void getComicByUPC(@PathVariable int upc) {
-	marvelAPIDAO.getComic(upc);
-				}
+	public List<Comic> getComicByUPC(@PathVariable String upc) {
+		Map<String,Object> results = marvelAPIDAO.getComic(upc);
+		return marvelAPIDAO.unpackNested(results);
+	}
 	
 	
 }
