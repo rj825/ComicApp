@@ -16,19 +16,7 @@
             
             <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
             
-            <br>
-
-            <button v-if="!showDeleteButton" 
-            v-on:click="toggleShowDeleteButton" 
-            class="btn btn-danger">
-              Delete Comic
-            </button>
             
-            <button v-if="showDeleteButton" 
-            v-on:click="toggleShowDeleteButton" 
-            class="btn btn-warning">
-              Cancel
-            </button>
 
             
           </b-col>
@@ -75,8 +63,7 @@ export default {
     return {
       author: 'Alan Moore',
       artist: 'Declan Shalvey',
-      collection: '',
-      showDeleteButton: false
+      collection: ''
       
     }
   },
@@ -128,10 +115,8 @@ export default {
       this.collection = this.$store.state.collections.filter(collection => {
         return collection.collectionId === id;
       }) 
-    },
-    toggleShowDeleteButton() {
-      this.showDeleteButton = !this.showDeleteButton;
     }
+    
   },
 };
 </script>

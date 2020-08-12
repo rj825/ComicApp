@@ -14,17 +14,19 @@
             v-if="!frontFacing"
             v-on:click="flipCard"
             img-src="@/assets/sample-comic-cover.png">
-            Stats Side
+            
+                <button 
+                  type="button" 
+                  class="btn btn-danger" 
+                  v-on:click="deleteComic()"
+                  v-if="$store.state.token != '' && 
+                  this.$store.state.user.id == collection.userId">
+                    Delete Comic
+                </button>
             </b-card>
             
             <div>
-                <button type="button" class="btn btn-danger" 
-                v-on:click="deleteComic()"
-                v-if="$store.state.token != '' && 
-                this.$store.state.user.id == collection.userId && 
-                showDeleteButton">
-                    Delete Comic
-                </button>
+                
             </div>
             <br>
 
@@ -37,7 +39,7 @@
 import CollectionService from '../services/CollectionService';
 export default {
   name: "comic-card",
-  props: ["comic", "collection", "showDeleteButton"],
+  props: ["comic", "collection"],
   data() {
     return {
       frontFacing: true,
