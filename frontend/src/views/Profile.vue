@@ -2,14 +2,20 @@
 
 
   <b-container>
-      <b-row>
-        {{$store.state.user.username}}'s Collection
-      </b-row>
-      <b-row>
-        <b-col>
-            <add-collection></add-collection>
-        </b-col>
+
+      <b-row align-v="center">
+
+          <b-col class="header-text">
+            {{$store.state.user.username}}'s Collections
+          </b-col>
+
+            <b-col cols="4">
+                <add-collection></add-collection>
+            </b-col>
      </b-row>
+
+        <hr>
+
      <b-row>
         <collection-card v-for="collection in $store.state.collections"
             v-bind:key="collection.id"
@@ -50,5 +56,10 @@ components:{
 </script>
 
 <style>
+
+.header-text {
+  font-family: "Bangers";
+  font-size:5vw;
+}
 
 </style>     

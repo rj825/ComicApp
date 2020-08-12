@@ -2,7 +2,11 @@
   <div>
 
     <div>
-      <button v-if="$store.state.token != ''" v-on:click="showForm = !showForm">
+      <button 
+      type="button"
+      class="btn btn-primary"
+      v-if="$store.state.token != ''" 
+      v-on:click="showForm = !showForm">
         <span v-show="showForm">Hide Form</span>
         <span v-show="!showForm">Add Collection</span>
       </button>

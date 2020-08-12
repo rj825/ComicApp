@@ -1,11 +1,14 @@
 <template>
   <div class="collections">
+    
     <b-container>
+      
       <b-row align-h="center">
         Number of comics written by Alan Moore in all public collections is: {{$store.state.authorStat}} <br/>
         Number of comics drawn by Declan Shalvey in all public collections is: {{$store.state.artistStat}}
       </b-row>
         
+        <hr>
       
       <b-row>
         <collection-card
@@ -15,8 +18,10 @@
           v-bind:collection="collection"
         ></collection-card>
       </b-row>
+
     </b-container>
-    <div></div>
+    
+
   </div>
 </template>
 
