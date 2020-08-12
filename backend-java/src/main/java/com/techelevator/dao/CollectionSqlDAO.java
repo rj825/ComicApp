@@ -55,6 +55,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 		comic.setAuthor(rs.getString("author"));
 		comic.setArtist(rs.getString("artist"));
 		comic.setPublisher(rs.getString("publisher"));
+		comic.setCoverUrl(rs.getString("comicurl"));
 		return comic;
 	}
 	
