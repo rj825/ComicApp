@@ -30,51 +30,51 @@ public class MarvelAPISqlDAO implements MarvelAPIDAO{
 	private JdbcTemplate jdbcTemplate;
 	private UserDAO userDAO;
 	private RestTemplate restTemplate = new RestTemplate();
+	private final String IMAGE_EXTENSION = "/portrait_xlarge.jpg";
 
 	public MarvelAPISqlDAO(UserDAO userDAO, JdbcTemplate jdbcTemplate) {
 		this.userDAO = userDAO;
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public void getComic(int id) {
-		ResponseEntity response = restTemplate.getForEntity(
+	@SuppressWarnings("unchecked")
+	public Map<String,Object> getComic(int upc) {
+		ResponseEntity<Map> response = restTemplate.getForEntity(
 		                "https://gateway.marvel.com/v1/public/comics?"
 		                + "apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&"
-		                + "id=" + id, 
-		                String.class); // Make GET request using Client
-		System.out.println(response.getBody()); // your return data returned from .getBody()
+		                + "upc=" + upc, 
+		                Map.class); // Make GET request using Client
+		Map<String, Object> results = (Map<String, Object>) response.getBody();
+		return results;
 		
 	}
 	
 	@SuppressWarnings("unchecked")
 	@JsonProperty("data")
 	public List<Comic> unpackNested(Map<String,Object> results) {
-		//IF WE MOVE OUT OF COMIC CLASS CHANGE THIS.* TO SETTER
-		List<Comic> searchResults = new ArrayList<Comic>();
-		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Object> data = (Map<String,Object>) results.get("data");
 		List<Object> comics = (List<Object>) data.get("results");
 		List<Comic> parsedComics = new ArrayList<Comic>();
-		//I currently get 0 index because I only want the first one
-		//for all matches you could iterate through the list using for each
 		for (Object comic: comics) {
 			Comic newComic = new Comic();
 			newComic.setPublisher("Marvel");
 			Map<String, Object> comicMap = (Map<String, Object>) comic;
-			newComic.setTitle((String) comicMap.get("title"));//CHANGE IF MOVED
+			newComic.setTitle((String) comicMap.get("title"));
 			Integer issueNumber = (Integer) comicMap.get("issueNumber");
-			newComic.setIssue(issueNumber.longValue());//CHANGE IF MOVED
+			newComic.setIssue(issueNumber.longValue());
+			List<Object> images = (List<Object>)comicMap.get("images");
+			Map<String,String> coverMap = (Map<String,String>)images.get(0);
+			newComic.setCoverUrl(coverMap.get("path")+IMAGE_EXTENSION);
 			Map<String, Object> creators = (Map<String,Object>)comicMap.get("creators");
 			List<Object> creatorsFullMap = (List<Object>)creators.get("items");
 			for (Object creator:creatorsFullMap) {
 				Map<String,String> creatorMap = (LinkedHashMap<String,String>) creator;
-				if (creatorMap.get("role").contains("penciller") && newComic.getArtist() == null) {
-					newComic.setArtist((String) creatorMap.get("name"));//CHANGE IF MOVED
+				if ((creatorMap.get("role").contains("penciller")||creatorMap.get("role").contains("inker") )&& newComic.getArtist() == null) {
+					newComic.setArtist((String) creatorMap.get("name"));
 				}
 				if (creatorMap.get("role").matches("writer") && newComic.getAuthor() == null) {
-					newComic.setAuthor((String) creatorMap.get("name"));//CHANGE IF MOVED
+					newComic.setAuthor((String) creatorMap.get("name"));
 				}
-			
 			}
 			Map<String,Object> characters = (Map<String,Object>)comicMap.get("characters");
 			List<Object> charactersFullMap = (List<Object>)characters.get("items");

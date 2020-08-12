@@ -8,7 +8,6 @@
             img-src="@/assets/comic-background-fade.png"
             overlay
             v-bind:title="collection.name"
-            v-bind:footer="collection.collectionId"
             >
             
 

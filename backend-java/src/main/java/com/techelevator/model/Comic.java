@@ -26,7 +26,8 @@ public class Comic {
 		
 	   private String artist;
 	   private String publisher;
-	    
+	   
+	   private String coverUrl;
 	   private List<ComicCharacter> characters;
 	
 	 
@@ -112,5 +113,13 @@ public class Comic {
 							"/n artist = "+this.artist;
 		return comicString;
 		
+	}
+
+	public String getCoverUrl() {
+		return coverUrl;
+	}
+
+	public void setCoverUrl(String coverUrl) {
+		this.coverUrl = coverUrl;
 	}
 }

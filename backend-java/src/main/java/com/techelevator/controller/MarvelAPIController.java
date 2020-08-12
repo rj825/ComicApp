@@ -56,9 +56,9 @@ public class MarvelAPIController {
 
 	
 
-	@RequestMapping(value = "/comics/{id}", method = RequestMethod.GET)
-	public void getComic(@PathVariable int id) {
-	marvelAPIDAO.getComic(id);
+	@RequestMapping(value = "/comics/marvel/{upc}", method = RequestMethod.GET)
+	public void getComicByUPC(@PathVariable int upc) {
+	marvelAPIDAO.getComic(upc);
 				}
 	
 	
