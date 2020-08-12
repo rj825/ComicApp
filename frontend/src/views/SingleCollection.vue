@@ -123,6 +123,10 @@ export default {
     },
     loadCollectionsIntoStore() {
       collectionService
+      // NOTE TO REVIEWER: the 'allCollections' method would ideally be a different service that 
+      // found a specific collection by name.  Due to time restrictions before demo we have decided
+      // to load them all.  We know that this is not how we would scale up if this were an actual
+      // live product
         .allCollections()
         .then((response) => {
           this.$store.commit("SET_COLLECTIONS", response.data);

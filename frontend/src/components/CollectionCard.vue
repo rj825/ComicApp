@@ -1,39 +1,25 @@
 <template>
-    <b-col cols="4" class="whole-collection shadow-lg">
+    <b-col cols="4" class="whole-collection">
         
         
         
             <b-card
             v-on:click="goToIndividualCollection"
-            img-src="@/assets/comic-background-fade.png"
+            img-src="@/assets/comic-background-darker.jpg"
             overlay
-            v-bind:title="collection.name"
-            >
             
+            >
+            <b-card-text align="center" class="collection-name">
+                
+                {{collection.name}}
+                
+                
+            </b-card-text>
 
             
             </b-card>
-        
-        <!-- Collection ID: {{collection.collectionId}} <br>
-            User ID: {{collection.userId}} -->
-        
-        <!-------OLD CODE BELOW, KEEPING AS REFERENCE AS FUNCTIONALITY------->
 
-        <!-- <b-col>
-            <router-link
-                :to="{name: 'collection-detail' , params: {id: collection.collectionId, collection:collection}}">
-            <div>
-                {{collection.name}}
-            </div>
-            <div>
-                Collection ID: {{collection.collectionId}}
-            </div>
-            <div>
-                User ID: {{collection.userId}}
-            </div>
-            </router-link>
-        </b-col> -->
-        
+            <br>
 
     </b-col>
 </template>
@@ -60,6 +46,8 @@ export default {
 
 <style>
 
+
+
 .whole-collection {
     text-decoration: none;
     font-family: "Bangers";
@@ -67,6 +55,11 @@ export default {
     cursor: pointer;
 }
 
-
+.collection-name {
+    font-size: 3vw;
+    color: seashell
+    
+    
+}
 
 </style>
