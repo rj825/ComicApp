@@ -55,7 +55,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 		comic.setAuthor(rs.getString("author"));
 		comic.setArtist(rs.getString("artist"));
 		comic.setPublisher(rs.getString("publisher"));
-		comic.setCoverUrl(rs.getString("comicurl"));
+		comic.setCoverUrl(rs.getString("coverUrl"));
 		return comic;
 	}
 	
@@ -71,7 +71,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public List<Comic> viewCollection(Principal principal, Long collectionId) {
-		String sql = "SELECT comics.comic_id, comics.title, comics.issue, comics.author, comics.artist, comics.publisher FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
+		String sql = "SELECT comics.comic_id, comics.title, comics.issue, comics.author, comics.artist, comics.publisher, comics.coverUrl FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ?";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collectionId);
 		List<Comic> listOfComics = new ArrayList<Comic>();

@@ -3,9 +3,9 @@
     
     <b-container>
       
-      <b-row align-h="center">
-        Number of comics written by Alan Moore in all public collections is: {{$store.state.authorStat}} <br/>
-        Number of comics drawn by Declan Shalvey in all public collections is: {{$store.state.artistStat}}
+      <b-row class="slide-left" align-h="center">
+        Number of comics written by Nick Spencer in all public collections is: {{$store.state.authorStat}} <br/>
+        Number of comics drawn by Mike Del Mundo in all public collections is: {{$store.state.artistStat}}
       </b-row>
         
         <hr>
@@ -33,8 +33,8 @@ import CollectionCard from "@/components/CollectionCard";
 export default {
   data() {
     return {
-        artist: 'Declan Shalvey',
-        author: 'Alan Moore'
+        artist: 'Mike Del Mundo',
+        author: 'Nick Spencer'
     };
   }, //Need to implement data for collections.
   created() {
@@ -75,4 +75,9 @@ export default {
 </script>
 
 <style>
+ .slide-left{
+  animation-duration: 2s;
+  animation-name: slide-left;
+  font: 1.3em bangers;
+}
 </style>

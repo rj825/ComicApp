@@ -43,6 +43,7 @@ public class ComicSqlDAO implements ComicDAO{
 		comic.setAuthor(rs.getString("author"));
 		comic.setArtist(rs.getString("artist"));
 		comic.setPublisher(rs.getString("publisher"));
+		comic.setCoverUrl(rs.getString("coverUrl"));
 		return comic;
 	}
 	
@@ -72,7 +73,7 @@ public class ComicSqlDAO implements ComicDAO{
 		String sql2 = "";
 		String sql3 = "";
 		if (userId == collectionUserId) {
-		sql = "INSERT INTO comics (title, issue, author, artist, publisher, comicurl) VALUES "
+		sql = "INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES "
 				+ "(?, ?, ?, ?, ?, ?)";
 		sql2 = "INSERT INTO collection_comic (collection_id, comic_id) VALUES (?, ?)";
 	    }
@@ -81,9 +82,9 @@ public class ComicSqlDAO implements ComicDAO{
 		String author = comic.getAuthor();
 		String artist = comic.getArtist();
 		String publisher = comic.getPublisher();
-		String comicURL = comic.getCoverUrl();
+		String coverUrl = comic.getCoverUrl();
 		List<ComicCharacter> characters = comic.getCharacters();
-		jdbcTemplate.update(sql, title, issue, author, artist, publisher, comicURL);
+		jdbcTemplate.update(sql, title, issue, author, artist, publisher, coverUrl);
 		Long comicId = getComicIdFromComicAttributes(title, issue, author, artist, publisher);
 		jdbcTemplate.update(sql2, collectionId, comicId);
 	}

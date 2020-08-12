@@ -32,7 +32,7 @@ public class MarvelAPISqlDAO implements MarvelAPIDAO{
 	private JdbcTemplate jdbcTemplate;
 	private UserDAO userDAO;
 	private RestTemplate restTemplate = new RestTemplate();
-	private final String IMAGE_EXTENSION = "/portrait_xlarge.jpg";
+	private final String IMAGE_EXTENSION = "/portrait_uncanny.jpg";
 
 	public MarvelAPISqlDAO(UserDAO userDAO, JdbcTemplate jdbcTemplate) {
 		this.userDAO = userDAO;
@@ -80,7 +80,7 @@ public class MarvelAPISqlDAO implements MarvelAPIDAO{
 			List<Object> creatorsFullMap = (List<Object>)creators.get("items");
 			for (Object creator:creatorsFullMap) {
 				Map<String,String> creatorMap = (LinkedHashMap<String,String>) creator;
-				if ((creatorMap.get("role").contains("penciller")||creatorMap.get("role").contains("inker") )&& newComic.getArtist() == null) {
+				if ((creatorMap.get("role").contains("penciller")||creatorMap.get("role").contains("inker") || creatorMap.get("role").contains("penciler") )&& newComic.getArtist() == null) {
 					newComic.setArtist((String) creatorMap.get("name"));
 				}
 				if (creatorMap.get("role").matches("writer") && newComic.getAuthor() == null) {

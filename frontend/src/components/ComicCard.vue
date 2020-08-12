@@ -5,7 +5,7 @@
             <b-card
             v-if="frontFacing"
             v-on:click="flipCard"
-            img-src="@/assets/sample-comic-cover.png"
+            v-bind:img-src="comic.coverUrl"
             overlay>
             </b-card>
 
@@ -13,7 +13,7 @@
               class="back-side"
               v-if="!frontFacing"
               v-on:click="flipCard"
-              img-src="@/assets/sample-comic-cover.png"
+              v-bind:img-src="comic.coverUrl"
               overlay>
 
               <b-row>

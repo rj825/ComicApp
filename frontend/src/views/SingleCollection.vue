@@ -23,10 +23,10 @@
             <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
             
            
-              <upc-lookup 
+              <u-p-c-lookup 
               v-if="limitNotHit" 
               v-bind:collection="collection[0]">
-              </upc-lookup>
+              </u-p-c-lookup>
             
             
 
@@ -36,10 +36,6 @@
         </b-row>
 
         <hr>
-
-        <upc-lookup>
-          
-        </upc-lookup>
 
       <b-row class="slide-right">  
         <comic-card
@@ -55,8 +51,8 @@
 
       <div class="slide-left">
         <b-row align-h="center">
-          Number of comics written by Alan Moore in this collection is: {{$store.state.authorStat}} <br/>
-          Number of comics drawn by Declan Shalvey in this collection is: {{$store.state.artistStat}}
+          Number of comics written by Ryan North in this collection is: {{$store.state.authorStat}} <br/>
+          Number of comics drawn by Derek Charm in this collection is: {{$store.state.artistStat}}
         </b-row>
      </div> 
       
@@ -71,15 +67,15 @@
 import ComicCard from "../components/ComicCard.vue";
 import collectionService from "@/services/CollectionService.js";
 import addComicForm from "../components/AddComicForm.vue";
-import UpcLookup from "../components/UpcLookup.vue";
+import UPCLookup from "../components/UPCLookup.vue";
 
 export default {
   
 
   data() {
     return {
-      author: 'Alan Moore',
-      artist: 'Declan Shalvey',
+      author: 'Ryan North',
+      artist: 'Derek Charm',
       collection: ''
       
     }
@@ -87,7 +83,7 @@ export default {
   components: {
     ComicCard,
     addComicForm,
-    UpcLookup
+    UPCLookup
   },
   created() {
     this.loadCollectionsIntoStore();
