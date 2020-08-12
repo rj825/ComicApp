@@ -8,9 +8,9 @@
             <div class="header">
               {{collection[0].name}}
             </div>
-           <div class="sub-header">
+           <!-- <div class="sub-header">
             by: {{collection[0].username}}
-           </div>
+           </div> -->
            
           </b-col>
 
@@ -19,8 +19,14 @@
             v-if="limitNotHit" 
             v-bind:collection="collection[0]">
             </add-comic-form>
-            
+            <br>
             <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
+            
+           
+              <upc-lookup 
+              v-if="limitNotHit" 
+              v-bind:collection="collection[0]">
+              </upc-lookup>
             
             
 
@@ -30,6 +36,10 @@
         </b-row>
 
         <hr>
+
+        <upc-lookup>
+          
+        </upc-lookup>
 
       <b-row class="slide-right">  
         <comic-card
@@ -61,6 +71,7 @@
 import ComicCard from "../components/ComicCard.vue";
 import collectionService from "@/services/CollectionService.js";
 import addComicForm from "../components/AddComicForm.vue";
+import UpcLookup from "../components/UpcLookup.vue";
 
 export default {
   
@@ -75,7 +86,8 @@ export default {
   },
   components: {
     ComicCard,
-    addComicForm
+    addComicForm,
+    UpcLookup
   },
   created() {
     this.loadCollectionsIntoStore();

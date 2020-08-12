@@ -1,45 +1,65 @@
 <template>
-  <div>
+  <b-col>
+
     <div>
       <button
         type="button"
         class="btn btn-primary"
-        v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId"
-        v-on:click="showForm = !showForm"
-      >
+        v-if="$store.state.token != '' && 
+        this.$store.state.user.id == collection.userId"
+        v-on:click="showForm = !showForm">
         <span v-show="showForm">Hide Form</span>
         <span v-show="!showForm">Add via UPC with Marvel API</span>
       </button>
     </div>
 
-    <form class="form" v-on:submit.prevent="" v-if="showForm">
+    <form class="form" v-on:submit="addNewComic"  v-if="showForm">
       <div>
-        <label for="UPC"></label>
-        <input
-          id="UPC"
-          name="UPC"
-          type="text"
-          placeholder="UPC"
-          v-model="newComic.title"
-          required
-        />
-      </div>
-      <div>
-        <button type="submit">Submit</button>
+        <label for="upc"></label>
+        <input 
+        id="upc"
+        name="upc"
+        type="text"
+        placeholder="UPC"
+        v-model="newComic.upc"/>
       </div>
 
       <div>
-        <button type="reset" v-on:click="resetForm">Reset Form</button>
+        <button type="submit" class="btn btn-primary">
+          Submit
+        </button>
+        <button type="reset" class="btn btn-danger">
+          Reset
+        </button>
       </div>
+      
+
+
     </form>
-  </div>
+
+  </b-col>
+
 </template>
 
 <script>
 export default {
    
 
-    name: 'upc-lookup'
+    name: 'upc-lookup',
+    props: ["collection"],
+    data() {
+      return {
+        showForm: false,
+        newComic: {
+          upc: ''
+        }
+      }
+    },
+    methods: {
+      addNewComic() {
+
+      }
+    }
 };
 </script>
 

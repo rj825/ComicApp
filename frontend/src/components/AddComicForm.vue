@@ -1,9 +1,11 @@
 <template>
  <b-col>
    <div>
-      <button type="button" class="btn btn-primary" v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId" v-on:click="showForm = !showForm">
+      <button type="button" class="btn btn-primary" v-if="$store.state.token != '' && 
+      this.$store.state.user.id == collection.userId" 
+      v-on:click="showForm = !showForm">
         <span v-show="showForm">Hide Form</span>
-        <span v-show="!showForm">Add Comic</span>
+        <span v-show="!showForm">Add Comic Manually</span>
       </button>
     </div>
       
@@ -67,11 +69,9 @@
 
   
       <div>
-        <button type="submit">Submit</button>
-      </div>
-
-      <div>
-        <button type="reset" v-on:click="resetForm">Reset Form</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      
+        <button type="reset" class="btn btn-danger" v-on:click="resetForm">Reset Form</button>
       </div>
 
     </form>
