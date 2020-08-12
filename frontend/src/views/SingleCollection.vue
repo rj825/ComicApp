@@ -4,9 +4,38 @@
     <b-container>
       
         <b-row>
-          <add-comic-form v-if="limitNotHit" v-bind:collection="collection[0]"></add-comic-form>
-          <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
+          <b-col>
+            {{$store.state.user.username}}
+          </b-col>
+
+          <b-col>
+            <add-comic-form 
+            v-if="limitNotHit" 
+            v-bind:collection="collection[0]">
+            </add-comic-form>
+            
+            <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
+            
+            <br>
+
+            <button v-if="!showDeleteButton" 
+            v-on:click="toggleShowDeleteButton" 
+            class="btn btn-danger">
+              Delete Comic
+            </button>
+            
+            <button v-if="showDeleteButton" 
+            v-on:click="toggleShowDeleteButton" 
+            class="btn btn-warning">
+              Cancel
+            </button>
+
+            
+          </b-col>
+
         </b-row>
+
+        <hr>
 
       <b-row class="slide-right">  
         <comic-card
@@ -14,6 +43,7 @@
           v-bind:key="comic.comicId"
           v-bind:comic="comic"
           v-bind:collection="collection[0]"
+          v-bind:showDeleteButton="showDeleteButton"
         ></comic-card>
       </b-row>
 
@@ -45,7 +75,8 @@ export default {
     return {
       author: 'Alan Moore',
       artist: 'Declan Shalvey',
-      collection: ''
+      collection: '',
+      showDeleteButton: false
       
     }
   },
@@ -97,6 +128,9 @@ export default {
       this.collection = this.$store.state.collections.filter(collection => {
         return collection.collectionId === id;
       }) 
+    },
+    toggleShowDeleteButton() {
+      this.showDeleteButton = !this.showDeleteButton;
     }
   },
 };

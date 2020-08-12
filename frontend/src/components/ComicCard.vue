@@ -18,9 +18,11 @@
             </b-card>
             
             <div>
-                <button type="button" class="btn btn-danger btn-sm" 
+                <button type="button" class="btn btn-danger" 
                 v-on:click="deleteComic()"
-                v-if="$store.state.token != '' && this.$store.state.user.id == collection.userId">
+                v-if="$store.state.token != '' && 
+                this.$store.state.user.id == collection.userId && 
+                showDeleteButton">
                     Delete Comic
                 </button>
             </div>
@@ -35,7 +37,7 @@
 import CollectionService from '../services/CollectionService';
 export default {
   name: "comic-card",
-  props: ["comic", "collection"],
+  props: ["comic", "collection", "showDeleteButton"],
   data() {
     return {
       frontFacing: true,
