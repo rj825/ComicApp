@@ -39,4 +39,10 @@ public interface CollectionDAO {
 
 	void removeComicFromCollection(int collection_id, int comic_id);
 
+	String getMostPopularCharacterInCollections();
+
+	String getMostPopularAuthorInCollections();
+
+	String getMostPopularArtistInCollections();
+
 }
