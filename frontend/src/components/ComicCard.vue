@@ -1,6 +1,6 @@
 <template>
     
-        <b-col cols="4" no-body="true" class="whole-comic">
+        <b-col md="4" no-body="true" class="whole-comic">
 
             <b-card
             v-if="frontFacing"
@@ -16,9 +16,12 @@
               img-src="@/assets/sample-comic-cover.png"
               overlay>
 
+            <b-row>
+              
+            </b-row>
             <div class="back-content">
               <b-card-text class="stats-font">
-                <b-row>
+                <b-row class="stats">
                   Title:<br> {{comic.title}} <br><br>
                   Issue #:<br> {{comic.issue}} <br><br>
                   Author:<br> {{comic.author}} <br><br>
@@ -85,14 +88,16 @@ export default {
   border: solid black 2.5px;
   border-radius: 10px;
   padding: 25px;
-  
-  
+}
+
+.stats {
+  font-size: 60%;
 }
 
 .stats-font {
   
   font-family: "Special Elite";
-  font-size: 1.4vw;
+  font-size:calc(12px + 1vw);
 }
 
 .back-content {
@@ -103,6 +108,7 @@ export default {
   text-decoration: none;
   font-family: "Bangers";
   font-size: 1.4vw;
+  cursor: pointer;
   
 }
 </style>

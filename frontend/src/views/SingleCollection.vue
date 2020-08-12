@@ -3,12 +3,18 @@
     
     <b-container>
       
-        <b-row>
-          <b-col>
-            {{$store.state.user.username}}
+        <b-row align-v="center">
+          <b-col class="header-text">
+            <div class="header">
+              {{collection[0].name}}
+            </div>
+           <div class="sub-header">
+            by: {{collection[0].username}}
+           </div>
+           
           </b-col>
 
-          <b-col>
+          <b-col cols="4">
             <add-comic-form 
             v-if="limitNotHit" 
             v-bind:collection="collection[0]">
@@ -125,6 +131,18 @@ export default {
 
 
 <style>
+.header-text {
+  font-family: "Bangers";
+}
+
+.header {
+  font-size: 5vw;
+}
+
+.sub-header{
+  font-size: 2vw;
+}
+
 .bangers{
   font: 2em bangers;
   text-align: center;
