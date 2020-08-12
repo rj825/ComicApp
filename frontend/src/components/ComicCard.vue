@@ -16,31 +16,31 @@
               img-src="@/assets/sample-comic-cover.png"
               overlay>
 
-            <b-row>
-              
-            </b-row>
-            <div class="back-content">
-              <b-card-text class="stats-font">
-                <b-row class="stats">
-                  Title:<br> {{comic.title}} <br><br>
-                  Issue #:<br> {{comic.issue}} <br><br>
-                  Author:<br> {{comic.author}} <br><br>
-                  Artist:<br> {{comic.artist}} <br><br>
-                  Publisher:<br> {{comic.publisher}}
-                </b-row>
-              </b-card-text>
+              <b-row>
+                
+              </b-row>
+              <div class="back-content">
+                <b-card-text class="stats-font">
+                  <b-row class="stats">
+                    Title:<br> {{comic.title}} <br><br>
+                    Issue #:<br> {{comic.issue}} <br><br>
+                    Author:<br> {{comic.author}} <br><br>
+                    Artist:<br> {{comic.artist}} <br><br>
+                    Publisher:<br> {{comic.publisher}}
+                  </b-row>
+                </b-card-text>
 
-                <b-row align-v="center">
-                  <button 
-                    type="button" 
-                    class="btn btn-danger" 
-                    v-on:click="deleteComic()"
-                    v-if="$store.state.token != '' && 
-                    this.$store.state.user.id == collection.userId">
-                      Delete Comic
-                  </button>
-                </b-row>
-            </div>
+                  <b-row align-v="center">
+                    <button 
+                      type="button" 
+                      class="btn btn-danger" 
+                      v-on:click="deleteComic()"
+                      v-if="$store.state.token != '' && 
+                      this.$store.state.user.id == collection.userId">
+                        Delete Comic
+                    </button>
+                  </b-row>
+              </div>
               
                 
             </b-card>

@@ -78,10 +78,9 @@ export default {
     addComicForm
   },
   created() {
-    this.getCollection(this.$route.params.id);
+    this.loadCollectionsIntoStore();
+    
     this.retrieveComics();
-    this.getArtistStat();
-    this.getAuthorStat();
     
     
   },
@@ -119,8 +118,18 @@ export default {
     },
     getCollection(id) {
       this.collection = this.$store.state.collections.filter(collection => {
-        return collection.collectionId === id;
+        return collection.collectionId == id;
       }) 
+    },
+    loadCollectionsIntoStore() {
+      collectionService
+        .allCollections()
+        .then((response) => {
+          this.$store.commit("SET_COLLECTIONS", response.data);
+          this.getCollection(this.$route.params.id);
+          this.getArtistStat();
+          this.getAuthorStat();
+        });
     }
     
   },
