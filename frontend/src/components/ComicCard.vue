@@ -6,8 +6,8 @@
             v-if="frontFacing"
             v-on:click="flipCard"
             img-src="@/assets/sample-comic-cover.png">
-            {{comic.title}}
-            {{comic.issue}}
+            {{comic.title}} <br>
+            Issue #{{comic.issue}}
             </b-card>
 
             <b-card
@@ -63,6 +63,6 @@ export default {
 .whole-comic {
   text-decoration: none;
   font-family: "Bangers";
-  font-size: 2vw;
+  font-size: 1.4vw;
 }
 </style>
