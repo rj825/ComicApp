@@ -53,7 +53,7 @@ CREATE TABLE comics (
         author varchar(50) NOT NULL,
         artist varchar(50) NOT NULL,
         publisher varchar(50) NOT NULL,
-        comicURL varchar(200) NOT NULL,
+        coverUrl varchar(200),
         CONSTRAINT PK_comic PRIMARY KEY (comic_id)
 );
 
@@ -87,57 +87,57 @@ INSERT INTO users (username,password_hash,role) VALUES ('premium','$2a$08$UkVvwp
 INSERT INTO collections (user_id, name, isPublic) VALUES (1, 'user collection', true);
 INSERT INTO collections (user_id, name, isPublic) VALUES (3, 'premium collection', false);
 
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Amazing Spider-Man (2018)', 15, 'Nick Spencer', 'Chris Bachalo', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608936901511');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Amazing Spider-Man (2018)', 15, 'Nick Spencer', 'Chris Bachalo', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/7/30/5c5c5586385fd/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Spider-Man');
 INSERT INTO comic_character (comic_id, character_id) VALUES (1, 1);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Thor (2018)', 10, 'Jason Aaron', 'Mike Del Mundo', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608976501011');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Thor (2018)', 10, 'Jason Aaron', 'Mike Del Mundo', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/3/e0/5c5c58822376d/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Thor');
 INSERT INTO characters (characterName) VALUES ('Odin');
 INSERT INTO comic_character (comic_id, character_id) VALUES (2, 2);
 INSERT INTO comic_character (comic_id, character_id) VALUES (2, 3);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Captain America (2018)', 8, 'Ta-Nehisi Coates', 'Adam Kubert', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608860700811');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Captain America (2018)', 8, 'Ta-Nehisi Coates', 'Adam Kubert', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/8/d0/5c6ddb162206c/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Captain America');
 INSERT INTO comic_character (comic_id, character_id) VALUES (3, 4);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('X-Men (2019)', 8, 'Jonathan Hickman', 'Mahmud Asrar', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=759606094661000811');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('X-Men (2019)', 8, 'Jonathan Hickman', 'Mahmud Asrar', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/40/5e5835541c3ca/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Cyclops');
 INSERT INTO characters (characterName) VALUES ('Storm');
 INSERT INTO comic_character (comic_id, character_id) VALUES (4, 5);
 INSERT INTO comic_character (comic_id, character_id) VALUES (4, 6);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Savage Avengers (2019)', 11, 'Gerry Duggan', 'Butch Guice', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960609261101111');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Savage Avengers (2019)', 11, 'Gerry Duggan', 'Butch Guice', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e53fa8c6de04/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Dr. Strange');
 INSERT INTO characters (characterName) VALUES ('Elektra');
 INSERT INTO comic_character (comic_id, character_id) VALUES (5, 7);
 INSERT INTO comic_character (comic_id, character_id) VALUES (5, 8);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Moon Knight Annual (2019)', 1, 'Cullen Bunn', 'Ibrahim Moustafa', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960609499800111');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Moon Knight Annual (2019)', 1, 'Cullen Bunn', 'Ibrahim Moustafa', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/3/60/5d700ed708841/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Moon Knight');
 INSERT INTO comic_character (comic_id, character_id) VALUES (6, 9);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Spider-Man (2019)', 2, 'Henry Abrams', 'Sara Pichelli', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=759606093541000211');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Spider-Man (2019)', 2, 'Henry Abrams', 'Sara Pichelli', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/3/04/5d97b0d8efd6f/portrait_xlarge.jpg');
 INSERT INTO comic_character (comic_id, character_id) VALUES (7, 1);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('Thor (2018)', 9, 'Jason Aaron', 'Mike Del Mundo', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608976500911');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('Thor (2018)', 9, 'Jason Aaron', 'Mike Del Mundo', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/9/40/5c2f6b164ea37/portrait_xlarge.jpg');
 INSERT INTO comic_character (comic_id, character_id) VALUES (8, 2);
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 1, 'Ryan North', 'Erica Henderson', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340400111');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 1, 'Ryan North', 'Erica Henderson', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/e/03/562692572d9d0/portrait_xlarge.jpg');
 INSERT INTO characters (characterName) VALUES ('Squirrel Girl');
 INSERT INTO comic_character (comic_id, character_id) VALUES (9, 10);
 
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 49, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404911');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 50, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340405011');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 48, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404811');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 47, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404711');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 46, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404611');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 45, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404511');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 44, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404411');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 43, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404311');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 42, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404211');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 41, 'Ryan North', 'Erica Henderson', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404111');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 40, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340404011');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 39, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403911');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 38, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403811');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 37, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403711');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 36, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403611');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 35, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403511');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 34, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403411');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 33, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403311');
-INSERT INTO comics (title, issue, author, artist, publisher, comicURL) VALUES ('The Unbeatable Squirrel Girl (2015)', 32, 'Ryan North', 'Derek Charm', 'Marvel', 'https://gateway.marvel.com/v1/public/comics?apikey=9b2a0b50935e208ae26eb35665dffc5b&ts=1&hash=c32fef8c4f7a7d830777bf84df88b0df&upc=75960608340403211');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 49, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/d0/5d924ce5067d6/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 50, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/90/5dc0927f16d45/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 48, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/10/5d700eb50c935/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 47, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/40/5d4c2c217e555/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 46, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/c/40/5d126dc7b5ce4/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 45, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/f/e0/5cf7db7f52d6d/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 44, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/c/30/5ccb3b6b3a479/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 43, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/c/00/5ca3be5632d7a/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 42, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/5/f0/5c802b03e3b49/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 41, 'Ryan North', 'Erica Henderson', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/9/30/5c5c547512cfa/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 40, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5c2f691809d15/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 39, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5c083b48b9771/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 38, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/c0/5be370464fa88/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 37, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/9/90/5bb52f72967ab/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 36, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/b/e0/5b9013c5bedd2/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 35, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/9/10/5b620eb03df94/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 34, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/f/a0/5b3fea6d8f54b/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 33, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/9/60/5b1705c7b94bf/portrait_xlarge.jpg');
+INSERT INTO comics (title, issue, author, artist, publisher, coverUrl) VALUES ('The Unbeatable Squirrel Girl (2015)', 32, 'Ryan North', 'Derek Charm', 'Marvel', 'http://i.annihil.us/u/prod/marvel/i/mg/6/b0/5aea30776558e/portrait_xlarge.jpg');
 INSERT INTO comic_character (comic_id, character_id) VALUES (10, 10);
 INSERT INTO comic_character (comic_id, character_id) VALUES (11, 10);
 INSERT INTO comic_character (comic_id, character_id) VALUES (12, 10);
@@ -162,6 +162,7 @@ INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,1);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,2);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,3);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,4);
+INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,7);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (2,5);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (2,3);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (2,6);
