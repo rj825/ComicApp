@@ -1,38 +1,51 @@
 <template>
     
-        <b-col cols="3" no-body="true" class="whole-comic">
+        <b-col cols="4" no-body="true" class="whole-comic">
 
             <b-card
             v-if="frontFacing"
             v-on:click="flipCard"
-            img-src="@/assets/sample-comic-cover.png">
-            {{comic.title}} <br>
-            Issue #{{comic.issue}}
+            img-src="@/assets/sample-comic-cover.png"
+            overlay>
             </b-card>
 
             <b-card
-            v-if="!frontFacing"
-            v-on:click="flipCard"
-            img-src="@/assets/sample-comic-cover.png">
-            
-                <button 
-                  type="button" 
-                  class="btn btn-danger" 
-                  v-on:click="deleteComic()"
-                  v-if="$store.state.token != '' && 
-                  this.$store.state.user.id == collection.userId">
-                    Delete Comic
-                </button>
-            </b-card>
-            
-            <div>
-                
+              class="back-side"
+              v-if="!frontFacing"
+              v-on:click="flipCard"
+              img-src="@/assets/sample-comic-cover.png"
+              overlay>
+
+            <div class="back-content">
+              <b-card-text class="stats-font">
+                <b-row>
+                  Title:<br> {{comic.title}} <br><br>
+                  Issue #:<br> {{comic.issue}} <br><br>
+                  Author:<br> {{comic.author}} <br><br>
+                  Artist:<br> {{comic.artist}} <br><br>
+                  Publisher:<br> {{comic.publisher}}
+                </b-row>
+              </b-card-text>
+
+                <b-row align-v="center">
+                  <button 
+                    type="button" 
+                    class="btn btn-danger" 
+                    v-on:click="deleteComic()"
+                    v-if="$store.state.token != '' && 
+                    this.$store.state.user.id == collection.userId">
+                      Delete Comic
+                  </button>
+                </b-row>
             </div>
-            <br>
+              
+                
+            </b-card>
 
+            <br><br>
 
-    
-  </b-col>
+        </b-col>
+
 </template>
 
 <script>
@@ -64,9 +77,32 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+.back-content {
+  background: rgba(0,0,0,.5);
+  color: seashell;
+  border: solid black 2.5px;
+  border-radius: 10px;
+  padding: 25px;
+  
+  
+}
+
+.stats-font {
+  
+  font-family: "Special Elite";
+  font-size: 1.4vw;
+}
+
+.back-content {
+  opacity: 1;
+}
+
 .whole-comic {
   text-decoration: none;
   font-family: "Bangers";
   font-size: 1.4vw;
+  
 }
 </style>
