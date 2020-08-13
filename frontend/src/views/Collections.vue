@@ -55,13 +55,13 @@ export default {
       });
     },
     getArtistStat() {
-        let newArtist = this.artist.replace(/ /g,'-');
+        let newArtist = this.artist.replace(/ /g,'_');
         collectionService.allCollectionsArtistStats(newArtist).then((response) => {
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
     getAuthorStat() {
-        let newAuthor = this.author.replace(/ /g,'-');
+        let newAuthor = this.author.replace(/ /g,'_');
         collectionService.allCollectionsAuthorStats(newAuthor).then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });

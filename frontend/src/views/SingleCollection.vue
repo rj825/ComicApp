@@ -91,9 +91,9 @@ export default {
       collection: '',
       mostPopular: {
           author: 'Jacob Wood',
-          authorNum: this.$store.state.authorStat,
+          authorNum: '',
           artist: 'Randy Proctor',
-          artistNum: this.$store.state.artistStat
+          artistNum: ''
           
     }
       
@@ -105,10 +105,8 @@ export default {
     UPCLookup
   },
   created() {
-    this.loadCollectionsIntoStore();
-    this.retrieveComics();
-    this.popAuthor();
-    this.popArtist();
+    this.loadCollectionsIntoStore()
+
 
     
   },
@@ -136,6 +134,7 @@ export default {
         let newArtist = this.mostPopular.artist.replace(/ /g,'_');
         CollectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist)
         .then((response) => {
+            this.mostPopular.artistNum = response.data
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
@@ -143,6 +142,7 @@ export default {
         let newAuthor = this.mostPopular.author.replace(/ /g,'_');
         CollectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor)
         .then((response) => {
+            this.mostPopular.authorNum = response.data
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
     },
@@ -161,8 +161,9 @@ export default {
         .then((response) => {
           this.$store.commit("SET_COLLECTIONS", response.data);
           this.getCollection(this.$route.params.id);
-          this.getArtistStat();
-          this.getAuthorStat();
+          this.retrieveComics();
+          this.popAuthor();
+          this.popArtist();
           
         });
     },
