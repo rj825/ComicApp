@@ -4,38 +4,53 @@
     <b-container>
       
         <b-row align-v="center">
-          <b-col class="header-text">
+          <b-col class="header-text" cols="6">
+
             <div class="header">
               {{collection[0].name}}
             </div>
+
            <div class="sub-header">
             Click on Comics to see their info!
            </div>
            
           </b-col>
-
-          <b-col cols="4">
-            <add-comic-form 
-            v-if="limitNotHit" 
-            v-bind:collection="collection[0]">
-            </add-comic-form>
-            <br>
-            <div class="makethisred" v-if="!limitNotHit"> Upgrade to Premium to have more than 5 comics in a collection!</div>
             
-           
-              <u-p-c-lookup 
-              v-if="limitNotHit" 
-              v-bind:collection="collection[0]">
-              </u-p-c-lookup>
-            
-            
-
-            
+          <b-col class="bangers">
+            Most Popular Author: {{mostPopular.author}} &#40;{{mostPopular.authorIssues}} comics&#41; <br>
+            Most Popular Artist: {{mostPopular.artist}} &#40;{{mostPopular.artistIssues}} comics&#41; <br>
           </b-col>
+
+          
 
         </b-row>
 
         <hr>
+
+        <b-row>
+          
+          <b-col>
+            <add-comic-form 
+            v-if="limitNotHit" 
+            v-bind:collection="collection[0]">
+            </add-comic-form>
+            
+            <div class="makethisred" v-if="!limitNotHit"> Upgrade to Premium to have more than 5 comics in a collection!</div>
+          </b-col>
+            
+          <b-col>
+            <u-p-c-lookup 
+              v-if="limitNotHit" 
+              v-bind:collection="collection[0]">
+              </u-p-c-lookup>
+          </b-col>
+           
+              
+            
+          
+        </b-row>
+
+        <br>
 
       <b-row class="slide-right">  
         <comic-card
@@ -51,9 +66,7 @@
 
       <div class="slide-left">
         <b-row align-h="center">
-          Your most popular Author is {{mostPopular.author}} with {{mostPopular.authorIssues}} comics in your collection <br>
-          Your most popular Artist is {{mostPopular.artist}} with {{mostPopular.artistIssues}} comics in your collection <br>
-          Your most popular Character is {{mostPopular.character}} with {{mostPopular.characterIssues}} comics in your collection
+          
         </b-row>
      </div> 
       
@@ -66,7 +79,7 @@
 
 <script>
 import ComicCard from "../components/ComicCard.vue";
-import collectionService from "@/services/CollectionService.js";
+import CollectionService from "@/services/CollectionService.js";
 import addComicForm from "../components/AddComicForm.vue";
 import UPCLookup from "../components/UPCLookup.vue";
 
@@ -81,8 +94,6 @@ export default {
           authorIssues: 20,
           artist: 'Randy Proctor',
           artistIssues: 40,
-          character: 'Brandon Moore',
-          characterIssues: 60
     }
       
     }
@@ -94,8 +105,9 @@ export default {
   },
   created() {
     this.loadCollectionsIntoStore();
-    
     this.retrieveComics();
+    this.popAuthor();
+    this.popArtist();
     
     
   },
@@ -113,7 +125,7 @@ export default {
   },
   methods: {
     retrieveComics() {
-      collectionService
+      CollectionService
         .singleCollection(this.$route.params.id)
         .then((response) => {
           this.$store.commit("SET_COMICS", response.data);
@@ -121,13 +133,13 @@ export default {
     },
     getArtistStat() {
         let newArtist = this.artist.replace(/ /g,'-');
-        collectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist).then((response) => {
+        CollectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist).then((response) => {
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
     getAuthorStat() {
         let newAuthor = this.author.replace(/ /g,'-');
-        collectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor).then((response) => {
+        CollectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor).then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
     },
@@ -137,7 +149,7 @@ export default {
       }) 
     },
     loadCollectionsIntoStore() {
-      collectionService
+      CollectionService
       // NOTE TO REVIEWER: the 'allCollections' method would ideally be a different service that 
       // found a specific collection by name.  Due to time restrictions before demo we have decided
       // to load them all.  We know that this is not how we would scale up if this were an actual
@@ -148,7 +160,20 @@ export default {
           this.getCollection(this.$route.params.id);
           this.getArtistStat();
           this.getAuthorStat();
+          
         });
+    },
+    popArtist() {
+      CollectionService.getMostPopularArtist()
+        .then(response => {
+          this.mostPopular.artist = response.data;
+        })
+    },
+    popAuthor() {
+      CollectionService.getMostPopularAuthorInCollection(this.$route.params.id)
+        .then(response => {
+          this.mostPopular.author = response.data;
+        })
     }
     
   },
@@ -172,7 +197,7 @@ export default {
 }
 
 .bangers{
-  font: 2em bangers;
+  font: 2vw bangers;
   text-align: center;
 }
 

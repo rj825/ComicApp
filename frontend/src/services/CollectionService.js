@@ -46,5 +46,15 @@ getMostPopularArtist() {
 
 getMostPopularCharacter() {
     return axios.get("/collections/character/popular")
+},
+
+
+getMostPopularAuthorInCollection(collectionId) {
+    return axios.get(`/collections/${collectionId}/author/popular`)
+},
+
+getMostPopularArtistInCollection(collectionId) {
+    return axios.get(`/collections/${collectionId}/artist/popular`)
 }
+
 }
