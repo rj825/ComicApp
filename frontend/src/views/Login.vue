@@ -3,7 +3,7 @@
     
     <b-container>
       <b-row align-h="center" class="mt-5">
-          <b-col cols="7">
+          <b-col cols="6">
             
             <form class="form-signin" @submit.prevent="login">
               
@@ -44,7 +44,7 @@
                 </div>
               <br/>
               <router-link :to="{ name: 'register' }">Need an account?</router-link>
-              <button type="submit">Sign in</button>
+              <button type="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
             </form>
 
           </b-col>

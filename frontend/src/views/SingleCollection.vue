@@ -51,8 +51,9 @@
 
       <div class="slide-left">
         <b-row align-h="center">
-          Number of comics written by Ryan North in this collection is: {{$store.state.authorStat}} <br/>
-          Number of comics drawn by Derek Charm in this collection is: {{$store.state.artistStat}}
+          Your most popular Author is {{mostPopular.author}} with {{mostPopular.authorIssues}} comics in your collection <br>
+          Your most popular Artist is {{mostPopular.artist}} with {{mostPopular.artistIssues}} comics in your collection <br>
+          Your most popular Character is {{mostPopular.character}} with {{mostPopular.characterIssues}} comics in your collection
         </b-row>
      </div> 
       
@@ -74,13 +75,14 @@ export default {
 
   data() {
     return {
-      author: 'Ryan North',
-      artist: 'Derek Charm',
       collection: '',
       mostPopular: {
-          artist: 'Jacob Wood',
-          author: 'Randy Proctor',
-          character: 'Squirrel Girl'
+          author: 'Jacob Wood',
+          authorIssues: 20,
+          artist: 'Randy Proctor',
+          artistIssues: 40,
+          character: 'Brandon Moore',
+          characterIssues: 60
     }
       
     }

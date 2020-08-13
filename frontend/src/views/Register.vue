@@ -1,44 +1,55 @@
 <template>
   <div id="register" class="text-center">
-    <form class="form-register" @submit.prevent="register">
-      <h1 class="h2 mb-3 font-weight-normal">Create Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
-        {{ registrationErrorMsg }}
-      </div>
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="Username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <br/>
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="Password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
-      <br/>
-      <router-link class="makeitred" :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
-    </form>
+    
+    <b-container>
+      <b-row align-h="center" class="mt-5">
+        <b-col cols="6">
+
+            <form class="form-register" @submit.prevent="register">
+              <h1 class="h2 mb-3 font-weight-normal">Create Account</h1>
+              <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+                {{ registrationErrorMsg }}
+              </div>
+              <label for="username" class="sr-only">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                placeholder="Username"
+                v-model="user.username"
+                required
+                autofocus
+              />
+              <br/>
+              <label for="password" class="sr-only">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                placeholder="Password"
+                v-model="user.password"
+                required
+              />
+              <input
+                type="password"
+                id="confirmPassword"
+                class="form-control"
+                placeholder="Confirm Password"
+                v-model="user.confirmPassword"
+                required
+              />
+              <br/>
+              <router-link class="makeitred" :to="{ name: 'login' }">Have an account?</router-link>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Create Account
+              </button>
+            </form>
+
+        </b-col>
+      </b-row>
+    </b-container>
+    
+    
   </div>
 </template>
 
