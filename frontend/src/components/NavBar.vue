@@ -25,7 +25,7 @@
                                 <router-link
                                 style="text-decoration: none;"
                                 v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">
-                                My Collection
+                                My Collections
                                 </router-link>
                             </b-nav-item>
                             <b-nav-item>

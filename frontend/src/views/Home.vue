@@ -7,16 +7,11 @@
       <b-row>
         <b-col>
 
-        </b-col>
-        <b-col cols="8">
-            <div class="welcome-message shadow">
-              <p class="headline">Welcome to Three-Point!</p>
-              <p wrap="hard">The ultimate site to log and share your comic collections! </p>
-            </div>
-        </b-col>
-        <b-col>
+          <carousel-slide></carousel-slide>
 
         </b-col>
+        
+        
       </b-row>
     </b-container>
 
@@ -28,8 +23,13 @@
 </template>
 
 <script>
+import CarouselSlide from '../components/CarouselSlide.vue';
+
 
 export default {
+  components: {
+    CarouselSlide
+  },
   name: 'home'
 };
 </script>
