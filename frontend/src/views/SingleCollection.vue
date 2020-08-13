@@ -8,9 +8,9 @@
             <div class="header">
               {{collection[0].name}}
             </div>
-           <!-- <div class="sub-header">
-            by: {{collection[0].username}}
-           </div> -->
+           <div class="sub-header">
+            Click on Comics to see their stats!
+           </div>
            
           </b-col>
 
