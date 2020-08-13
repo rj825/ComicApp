@@ -53,6 +53,8 @@
 
 <script>
 import CollectionService from '../services/CollectionService';
+import samplecomiccover from '../assets/sample-comic-cover.png';
+
 export default {
   name: "comic-card",
   props: ["comic", "collection"],
@@ -78,7 +80,7 @@ export default {
   computed: {
     imageUrl() {
       if (this.comic.coverUrl === null) {
-        return '../assets/sample-comic-cover.png';
+        return samplecomiccover;
       } else return this.comic.coverUrl;
     }
   }
