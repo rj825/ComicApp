@@ -158,8 +158,8 @@ INSERT INTO comic_character (comic_id, character_id) VALUES (26, 10);
 INSERT INTO comic_character (comic_id, character_id) VALUES (27, 10);
 INSERT INTO comic_character (comic_id, character_id) VALUES (28, 10);
 
-INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,1);
-INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,2);
+INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,21);
+INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,22);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,3);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,4);
 INSERT INTO collection_comic (collection_id,comic_id) VALUES (1,7);
