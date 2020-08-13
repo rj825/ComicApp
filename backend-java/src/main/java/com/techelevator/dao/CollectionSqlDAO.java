@@ -247,7 +247,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
 				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
 				"WHERE collections.isPublic \r\n" + 
-				"GROUP BY comics.comic_id";
+				"GROUP BY comics.author";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
 		int currentCountLeader = 0;
 		String finalPopularAuthor = null;
@@ -268,7 +268,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
 				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
 				"WHERE collections.isPublic \r\n" + 
-				"GROUP BY comics.comic_id";
+				"GROUP BY comics.artist";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
 		int currentCountLeader = 0;
 		String finalPopularArtist = null;
