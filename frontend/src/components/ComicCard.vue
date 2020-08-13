@@ -5,7 +5,7 @@
             <b-card
             v-if="frontFacing"
             v-on:click="flipCard"
-            v-bind:img-src="comic.coverUrl"
+            v-bind:img-src="imageUrl"
             overlay>
             </b-card>
 
@@ -13,7 +13,7 @@
               class="back-side"
               v-if="!frontFacing"
               v-on:click="flipCard"
-              v-bind:img-src="comic.coverUrl"
+              v-bind:img-src="imageUrl"
               overlay>
 
               <b-row>
@@ -74,6 +74,13 @@ export default {
             });
     }
 
+  },
+  computed: {
+    imageUrl() {
+      if (this.comic.coverUrl === null) {
+        return '../assets/sample-comic-cover.png';
+      } else return this.comic.coverUrl;
+    }
   }
 
 };

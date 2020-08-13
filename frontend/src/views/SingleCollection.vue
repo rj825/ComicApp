@@ -20,7 +20,7 @@
             v-bind:collection="collection[0]">
             </add-comic-form>
             <br>
-            <div v-if="!limitNotHit"> Upgrade to Premium to add more comics!</div>
+            <div class="makethisred" v-if="!limitNotHit"> Upgrade to Premium to have more than 5 comics in a collection!</div>
             
            
               <u-p-c-lookup 
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     limitNotHit() {
-      let premiumBoolean = (this.$store.state.user.authorities[0].name === "ROLE_PREMIUM")
+      let premiumBoolean = (this.$store.state.user.authorities && this.$store.state.user.authorities[0].name === "ROLE_PREMIUM")
       let count = 0;
       this.$store.state.comics.forEach(() => {
         count+=1;
@@ -204,4 +204,7 @@ export default {
     width: 100%;
   }
 }
+  .makethisred{
+    color: firebrick;
+  }
 </style>

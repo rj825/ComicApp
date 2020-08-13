@@ -41,16 +41,18 @@
                              <!-- Using 'button-content' slot -->
                             <template v-slot:button-content>
                                 <em>{{username}}</em>
+                                <span v-if="$store.state.token === ''">Login</span>
                             </template>
 
-                            <b-dropdown-item>
-                                <router-link v-if="$store.state.token != ''" v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
+                            <b-dropdown-item v-if="$store.state.token != '' && this.$store.state.user.authorities[0].name !='ROLE_PREMIUM'">
+                                <router-link 
+                                 v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
                             </b-dropdown-item>
-                            <b-dropdown-item>
-                                <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
+                            <b-dropdown-item v-if="$store.state.token === ''">
+                                <router-link v-bind:to="{ name: 'login' }" >Login</router-link>
                             </b-dropdown-item>
-                            <b-dropdown-item>
-                                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+                            <b-dropdown-item v-if="$store.state.token != ''">
+                                <router-link v-bind:to="{ name: 'logout' }" >Logout</router-link>
                             </b-dropdown-item>
                         
                         </b-nav-item-dropdown>
