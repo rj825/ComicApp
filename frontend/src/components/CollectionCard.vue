@@ -1,5 +1,5 @@
 <template>
-    <b-col cols="4" class="whole-collection">
+    <b-col md="4" class="whole-collection">
         
         
         
@@ -61,5 +61,15 @@ export default {
     
     
 }
+
+@media only screen and (max-width: 767px) {
+
+.collection-name {
+    font-size: 10vw;
+}
+
+}
+
+
 
 </style>
