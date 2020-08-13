@@ -9,7 +9,7 @@
               {{collection[0].name}}
             </div>
            <div class="sub-header">
-            Click on Comics to see their stats!
+            Click on Comics to see their info!
            </div>
            
           </b-col>

@@ -65,6 +65,10 @@ body, html {
   overflow-y: auto;
 }
 
+.mt-5 {
+  margin-top: 100px
+}
+
 /* PALETTE COLORS PLEASE PICK FROM THESE
 https://coolors.co/b22222-236581-5bc0de-ffff66-402039 */
 

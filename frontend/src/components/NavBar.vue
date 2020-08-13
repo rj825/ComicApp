@@ -1,7 +1,7 @@
 <template>
   <div class="navbarroot">
 
-        <b-navbar class="navbar"  toggleable="lg"  >
+        <b-navbar class="navbar" toggleable="lg"  >
             <router-link style="text-decoration: none;" class="logo" v-bind:to="{ name: 'home' }">
                 <img src="@/assets/threepoint.png" height="50px" width="53px"/>
                 THREE-POINT COLLECTIONS
@@ -85,6 +85,7 @@ export default {
 
 .navbar {
     background-color: #5BC0DE;
+    
     
 }
 .navbarroot {
