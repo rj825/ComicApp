@@ -4,7 +4,7 @@
         <b-navbar class="navbar"  toggleable="lg"  variant="info">
             <router-link style="text-decoration: none;" class="logo" v-bind:to="{ name: 'home' }">
                 <img src="@/assets/threepoint.png" height="50px" width="53px"/>
-                THREE-POINT
+                THREE-POINT COLLECTIONS
             </router-link>
             
 
