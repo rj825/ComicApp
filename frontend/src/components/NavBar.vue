@@ -4,7 +4,7 @@
         <b-navbar class="navbar"  toggleable="lg"  variant="info">
             <router-link style="text-decoration: none;" class="logo" v-bind:to="{ name: 'home' }">
                 <img src="@/assets/threepoint.png" height="50px" width="53px"/>
-                THREE-POINT
+                THREE-POINT COLLECTIONS
             </router-link>
             
 
@@ -25,7 +25,7 @@
                                 <router-link
                                 style="text-decoration: none;"
                                 v-bind:to="{path: `/collections/user/${username}`}" v-if="$store.state.token !=''">
-                                My Collection
+                                My Collections
                                 </router-link>
                             </b-nav-item>
                             <b-nav-item>
@@ -35,22 +35,24 @@
                                 Public Collections
                                 </router-link>
                             </b-nav-item>
+                            <b-nav-item v-if="$store.state.token === ''">
+                                <router-link v-bind:to="{ name: 'login' }" >Login</router-link>
+                            </b-nav-item>
                         </b-navbar-nav>
 
-                        <b-nav-item-dropdown right>
+                        <b-nav-item-dropdown right v-if="$store.state.token != ''">
                              <!-- Using 'button-content' slot -->
                             <template v-slot:button-content>
                                 <em>{{username}}</em>
+                                
                             </template>
 
-                            <b-dropdown-item>
-                                <router-link v-if="$store.state.token != ''" v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
+                            <b-dropdown-item v-if="$store.state.token != '' && this.$store.state.user.authorities[0].name !='ROLE_PREMIUM'">
+                                <router-link 
+                                 v-bind:to="{ name: 'upgrade' }">Upgrade to Premium</router-link>
                             </b-dropdown-item>
-                            <b-dropdown-item>
-                                <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token === ''">Login</router-link>
-                            </b-dropdown-item>
-                            <b-dropdown-item>
-                                <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+                            <b-dropdown-item v-if="$store.state.token != ''">
+                                <router-link v-bind:to="{ name: 'logout' }" >Logout</router-link>
                             </b-dropdown-item>
                         
                         </b-nav-item-dropdown>

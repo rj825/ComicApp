@@ -93,7 +93,8 @@ data(){
             issue: '',
             author: '',
             artist: '',
-            publisher: ''
+            publisher: '',
+            coverUrl: ''
         }
     }
 
@@ -104,7 +105,7 @@ methods:{
         .addComic(this.collection.collectionId, this.newComic)
         .then((response) => {if (response.status === 201) {
             this.resetForm();
-            this.$router.push({ name: 'collection-detail', params: {id: this.collection.collectionId}});
+            location.reload();
           }
         })
         .catch((error) => {
