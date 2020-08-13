@@ -39,9 +39,9 @@ public class AuthenticationController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginDTO loginDto) {
-
+		String username = loginDto.getUsername().toLowerCase();
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				loginDto.getUsername(), loginDto.getPassword());
+				username, loginDto.getPassword());
 
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -57,6 +57,7 @@ public class AuthenticationController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void register(@Valid @RequestBody RegisterUserDTO newUser) {
+		newUser.setUsername(newUser.getUsername().toLowerCase()); 
 		if (userDAO.usernameExists(newUser.getUsername())) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
 		} else {
