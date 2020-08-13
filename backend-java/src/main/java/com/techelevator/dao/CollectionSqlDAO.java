@@ -250,15 +250,15 @@ public class CollectionSqlDAO implements CollectionDAO {
 				"GROUP BY comics.comic_id";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
 		int currentCountLeader = 0;
-		String finalPopularArtist = null;
+		String finalPopularAuthor = null;
 		while (rs.next() ) {
 			if (rs.getInt("count") > currentCountLeader) {
 				currentCountLeader = rs.getInt("count");
-				finalPopularArtist = rs.getString("artist");
+				finalPopularAuthor = rs.getString("author");
 			}
 		}
 		
-		return finalPopularArtist;
+		return finalPopularAuthor;
 	}
 
 	@Override

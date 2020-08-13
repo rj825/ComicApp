@@ -76,7 +76,12 @@ export default {
     return {
       author: 'Ryan North',
       artist: 'Derek Charm',
-      collection: ''
+      collection: '',
+      mostPopular: {
+          artist: 'Jacob Wood',
+          author: 'Randy Proctor',
+          character: 'Squirrel Girl'
+    }
       
     }
   },

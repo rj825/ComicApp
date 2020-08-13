@@ -50,7 +50,7 @@ body, html {
   vertical-align: middle;
   /* background-image: url("./assets/baw-comic-light.jpg"); */
    background-position: 50% 50%;
-   background-repeat: no-repeat;
+   background-repeat: repeat;
    background-size: cover;
 }
 
@@ -59,7 +59,10 @@ body, html {
   background-image: url("./assets/baw-comic-warm-fade.jpg");
   background-size: cover;
   background-position: top;
+  background-repeat: no-repeat;
+  background-attachment:scroll;
   height: 100vh;
+  overflow-y: auto;
 }
 
 /* PALETTE COLORS PLEASE PICK FROM THESE

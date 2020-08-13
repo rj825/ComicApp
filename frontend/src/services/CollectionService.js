@@ -34,5 +34,17 @@ allCollectionsAuthorStats(author) {
 
 deleteComicFromCollection(collectionId, comicId) {
     return axios.delete(`/collections/${collectionId}/comic/${comicId}`)
+},
+
+getMostPopularAuthor() {
+    return axios.get("/collections/author/popular")
+},
+
+getMostPopularArtist() {
+    return axios.get("/collections/artist/popular")
+},
+
+getMostPopularCharacter() {
+    return axios.get("/collections/character/popular")
 }
 }
