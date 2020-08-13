@@ -171,7 +171,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 	public int getNumberOfIssuesForAuthorInCollection(Principal principal, int collection_id, String author) {
 		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ? AND comics.author = ?";
-		author = author.replace("-", " ");
+		author = author.replace("_", " ");
 		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {collection_id, author}, Integer.class);
 		return numberOfIssues;
 	}
@@ -180,7 +180,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 	public int getNumberOfIssuesForArtistInCollection(Principal principal, int collection_id, String artist) {
 		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.collection_id = ? AND comics.artist = ?";
-		artist = artist.replace("-", " ");
+		artist = artist.replace("_", " ");
 		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {collection_id, artist}, Integer.class);
 		return numberOfIssues;
 	}
@@ -197,7 +197,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 	public int getNumberOfIssuesForAuthorInCollections(Principal principal, String author) {
 		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.isPublic AND comics.author = ?";
-		author = author.replace("-", " ");
+		author = author.replace("_", " ");
 		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {author}, Integer.class);
 		return numberOfIssues;
 	}
@@ -206,7 +206,7 @@ public class CollectionSqlDAO implements CollectionDAO {
 	public int getNumberOfIssuesForArtistInCollections(Principal principal, String artist) {
 		String sql = "SELECT COUNT(ALL comics.title) FROM collections INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id"
 				+ " INNER JOIN comics ON comics.comic_id = collection_comic.comic_id WHERE collections.isPublic AND comics.artist = ?";
-		artist = artist.replace("-", " ");
+		artist = artist.replace("_", " ");
 		int numberOfIssues = jdbcTemplate.queryForObject(sql, new Object[] {artist}, Integer.class);
 		return numberOfIssues;
 	}
@@ -307,20 +307,16 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public String getMostPopularAuthorInCollection(int collection_id) {
-		String sql = "SELECT COUNT(comics.author), comics.author\r\n" + 
-				"FROM collections \r\n" + 
-				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
-				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
-				"WHERE collections.collection_id = ? \r\n" + 
-				"GROUP BY comics.comic_id";
+		String sql = "SELECT count(comics.author), author from comics\r\n" + 
+				"JOIN collection_comic ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collection_comic.collection_id = ?\r\n" + 
+				"GROUP BY comics.author ORDER BY count(comics.author) DESC LIMIT 1;";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collection_id);
 		int currentCountLeader = 0;
 		String finalPopularArtist = null;
 		while (rs.next() ) {
-			if (rs.getInt("count") > currentCountLeader) {
-				currentCountLeader = rs.getInt("count");
-				finalPopularArtist = rs.getString("artist");
-			}
+			finalPopularArtist = rs.getString("author");
+			
 		}
 		
 		return finalPopularArtist;
@@ -328,20 +324,16 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public String getMostPopularArtistInCollection(int collection_id) {
-		String sql = "SELECT COUNT(comics.artist), comics.artist\r\n" + 
-				"FROM collections \r\n" + 
-				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
-				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
-				"WHERE collections.collection_id = ? \r\n" + 
-				"GROUP BY comics.comic_id";
+		String sql = "SELECT count(comics.artist), artist from comics\r\n" + 
+				"JOIN collection_comic ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collection_comic.collection_id = ?\r\n" + 
+				"GROUP BY comics.artist ORDER BY count(comics.artist) DESC LIMIT 1;";
 		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collection_id);
 		int currentCountLeader = 0;
 		String finalPopularArtist = null;
 		while (rs.next() ) {
-			if (rs.getInt("count") > currentCountLeader) {
-				currentCountLeader = rs.getInt("count");
 				finalPopularArtist = rs.getString("artist");
-			}
+			
 		}
 		
 		return finalPopularArtist;

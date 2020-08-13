@@ -17,8 +17,8 @@
           </b-col>
             
           <b-col class="bangers">
-            Most Popular Author: {{mostPopular.author}} &#40;{{mostPopular.authorIssues}} comics&#41; <br>
-            Most Popular Artist: {{mostPopular.artist}} &#40;{{mostPopular.artistIssues}} comics&#41; <br>
+            Most Popular Author: {{mostPopular.author}} &#40;{{$store.state.authorStat}} comics&#41; <br>
+            Most Popular Artist: {{mostPopular.artist}} &#40;{{$store.state.artistStat}} comics&#41; <br>
           </b-col>
 
           
@@ -91,9 +91,10 @@ export default {
       collection: '',
       mostPopular: {
           author: 'Jacob Wood',
-          authorIssues: 20,
+          authorNum: this.$store.state.authorStat,
           artist: 'Randy Proctor',
-          artistIssues: 40,
+          artistNum: this.$store.state.artistStat
+          
     }
       
     }
@@ -108,7 +109,7 @@ export default {
     this.retrieveComics();
     this.popAuthor();
     this.popArtist();
-    
+
     
   },
   computed: {
@@ -132,14 +133,16 @@ export default {
         });
     },
     getArtistStat() {
-        let newArtist = this.artist.replace(/ /g,'-');
-        CollectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist).then((response) => {
+        let newArtist = this.mostPopular.artist.replace(/ /g,'_');
+        CollectionService.singleCollectionArtistStats(this.collection[0].collectionId, newArtist)
+        .then((response) => {
             this.$store.commit("SET_ARTIST_STAT", response.data);
         });
     },
     getAuthorStat() {
-        let newAuthor = this.author.replace(/ /g,'-');
-        CollectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor).then((response) => {
+        let newAuthor = this.mostPopular.author.replace(/ /g,'_');
+        CollectionService.singleCollectionAuthorStats(this.collection[0].collectionId, newAuthor)
+        .then((response) => {
             this.$store.commit("SET_AUTHOR_STAT", response.data);
         });
     },
@@ -164,15 +167,17 @@ export default {
         });
     },
     popArtist() {
-      CollectionService.getMostPopularArtist()
+      CollectionService.getMostPopularArtistInCollection(this.$route.params.id)
         .then(response => {
           this.mostPopular.artist = response.data;
+          this.getArtistStat(this.mostPopular.artist);
         })
     },
     popAuthor() {
       CollectionService.getMostPopularAuthorInCollection(this.$route.params.id)
         .then(response => {
           this.mostPopular.author = response.data;
+          this.getAuthorStat(this.mostPopular.author);
         })
     }
     
