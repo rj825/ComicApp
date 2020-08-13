@@ -7,7 +7,7 @@
             
             <form class="form-signin" @submit.prevent="login">
               
-              <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+              <h1 class="h2 mb-3 font-weight-normal">Please Sign In</h1>
               
               <div
                 class="alert alert-danger"
@@ -31,7 +31,7 @@
                   required
                   autofocus/>
               </div>
-              
+              <br/>
               <div>
                 <label for="password" class="sr-only">Password</label>
                 <input
@@ -42,7 +42,7 @@
                   v-model="user.password"
                   required/>
                 </div>
-              
+              <br/>
               <router-link :to="{ name: 'register' }">Need an account?</router-link>
               <button type="submit">Sign in</button>
             </form>
@@ -97,13 +97,15 @@ export default {
 <style>
 
 #login {
+  font-family: 'Bangers';
   height: 90vh;
 }
 
 .form-signin {
-  background-color: skyblue;
+  background-color: #5bc0de;
   border: solid 2px black;
   border-radius: 10px;
+  padding: 10px;
 }
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h2 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -15,6 +15,7 @@
         required
         autofocus
       />
+      <br/>
       <label for="password" class="sr-only">Password</label>
       <input
         type="password"
@@ -32,7 +33,8 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <br/>
+      <router-link class="makeitred" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -90,4 +92,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#register {
+  font-family: 'Bangers';
+}
+
+.form-register {
+  background-color: #5bc0de;
+  border: solid 2px black;
+  border-radius: 10px;
+  padding: 10px;
+  
+}
+
+.makeitred, .makeitred:visited{
+  text-decoration:none;
+  font-size: 20px;
+}
+</style>
