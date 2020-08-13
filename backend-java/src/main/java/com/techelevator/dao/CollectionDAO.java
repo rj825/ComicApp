@@ -45,4 +45,10 @@ public interface CollectionDAO {
 
 	String getMostPopularArtistInCollections();
 
+	String getMostPopularCharacterInCollection(int collection_id);
+
+	String getMostPopularAuthorInCollection(int collection_id);
+
+	String getMostPopularArtistInCollection(int collection_id);
+
 }

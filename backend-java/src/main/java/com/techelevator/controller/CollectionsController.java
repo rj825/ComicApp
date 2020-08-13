@@ -127,6 +127,21 @@ public class CollectionsController {
 		return collectionDAO.getMostPopularArtistInCollections();
 	}
 	
+	@RequestMapping(value = "/collections/{collection_id}/character/popular", method = RequestMethod.GET)
+	public String getMostPopularCharacterInCollection(@PathVariable int collection_id) {
+		return collectionDAO.getMostPopularCharacterInCollection(collection_id);
+	}
+	
+	@RequestMapping(value = "/collections/{collection_id}/author/popular", method = RequestMethod.GET)
+	public String getMostPopularAuthorInCollection(@PathVariable int collection_id) {
+		return collectionDAO.getMostPopularAuthorInCollection(collection_id);
+	}
+	
+	@RequestMapping(value = "/collections/{collection_id}/artist/popular", method = RequestMethod.GET)
+	public String getMostPopularArtistInCollection(@PathVariable int collection_id) {
+		return collectionDAO.getMostPopularArtistInCollection(collection_id);
+	}
+	
 	@RequestMapping(value = "/collections/{collection_id}/comic/{comic_id}", method = RequestMethod.DELETE)
 	public void removeComicFromCollection(@PathVariable int collection_id, @PathVariable int comic_id) {
 		collectionDAO.removeComicFromCollection(collection_id, comic_id);

@@ -242,14 +242,109 @@ public class CollectionSqlDAO implements CollectionDAO {
 
 	@Override
 	public String getMostPopularAuthorInCollections() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(comics.author), comics.author\r\n" + 
+				"FROM collections \r\n" + 
+				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
+				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collections.isPublic \r\n" + 
+				"GROUP BY comics.comic_id";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+		int currentCountLeader = 0;
+		String finalPopularArtist = null;
+		while (rs.next() ) {
+			if (rs.getInt("count") > currentCountLeader) {
+				currentCountLeader = rs.getInt("count");
+				finalPopularArtist = rs.getString("artist");
+			}
+		}
+		
+		return finalPopularArtist;
 	}
 
 	@Override
 	public String getMostPopularArtistInCollections() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT COUNT(comics.artist), comics.artist\r\n" + 
+				"FROM collections \r\n" + 
+				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
+				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collections.isPublic \r\n" + 
+				"GROUP BY comics.comic_id";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+		int currentCountLeader = 0;
+		String finalPopularArtist = null;
+		while (rs.next() ) {
+			if (rs.getInt("count") > currentCountLeader) {
+				currentCountLeader = rs.getInt("count");
+				finalPopularArtist = rs.getString("artist");
+			}
+		}
+		
+		return finalPopularArtist;
+	}
+
+	@Override
+	public String getMostPopularCharacterInCollection(int collection_id) {
+		String sql = "SELECT COUNT(comic_character.character_id), characters.charactername\r\n" + 
+				"FROM collections \r\n" + 
+				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id\r\n" + 
+				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"INNER JOIN comic_character ON comic_character.comic_id = comics.comic_id\r\n" + 
+				"INNER JOIN characters ON comic_character.character_id = characters.character_id \r\n" + 
+				"WHERE collections.collection_id = ? \r\n" + 
+				"GROUP BY characters.character_id";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collection_id);
+		int currentCountLeader = 0;
+		String finalPopularCharacter = null;
+		while (rs.next() ) {
+			if (rs.getInt("count") > currentCountLeader) {
+				currentCountLeader = rs.getInt("count");
+				finalPopularCharacter = rs.getString("charactername");
+			}
+		}
+		
+		return finalPopularCharacter;
+	}
+
+	@Override
+	public String getMostPopularAuthorInCollection(int collection_id) {
+		String sql = "SELECT COUNT(comics.author), comics.author\r\n" + 
+				"FROM collections \r\n" + 
+				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
+				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collections.collection_id = ? \r\n" + 
+				"GROUP BY comics.comic_id";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collection_id);
+		int currentCountLeader = 0;
+		String finalPopularArtist = null;
+		while (rs.next() ) {
+			if (rs.getInt("count") > currentCountLeader) {
+				currentCountLeader = rs.getInt("count");
+				finalPopularArtist = rs.getString("artist");
+			}
+		}
+		
+		return finalPopularArtist;
+	}
+
+	@Override
+	public String getMostPopularArtistInCollection(int collection_id) {
+		String sql = "SELECT COUNT(comics.artist), comics.artist\r\n" + 
+				"FROM collections \r\n" + 
+				"INNER JOIN collection_comic ON collection_comic.collection_id = collections.collection_id \r\n" + 
+				"INNER JOIN comics ON comics.comic_id = collection_comic.comic_id\r\n" + 
+				"WHERE collections.collection_id = ? \r\n" + 
+				"GROUP BY comics.comic_id";
+		SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, collection_id);
+		int currentCountLeader = 0;
+		String finalPopularArtist = null;
+		while (rs.next() ) {
+			if (rs.getInt("count") > currentCountLeader) {
+				currentCountLeader = rs.getInt("count");
+				finalPopularArtist = rs.getString("artist");
+			}
+		}
+		
+		return finalPopularArtist;
 	}
 
 }
