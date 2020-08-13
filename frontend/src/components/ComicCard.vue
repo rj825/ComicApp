@@ -60,7 +60,7 @@ export default {
   props: ["comic", "collection"],
   data() {
     return {
-      frontFacing: true,
+      frontFacing: 'true'
     };
   },
   methods: {
@@ -74,17 +74,25 @@ export default {
                     this.$router.go();
                 }
             });
+    },
+    frontOrBack() {
+      if (this.comic.coverUrl === null || this.comic.coverUrl === '') {
+        this.frontFacing = false;
+      } else return this.frontFacing = true;
     }
 
   },
   computed: {
     imageUrl() {
-      if (this.comic.coverUrl === null) {
+      if (this.comic.coverUrl === null || this.comic.coverUrl === '') {
         return samplecomiccover;
       } else return this.comic.coverUrl;
-    }
+    },
+    
+  },
+  created() {
+    this.frontOrBack();
   }
-
 };
 </script>
 
