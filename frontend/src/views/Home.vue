@@ -22,7 +22,12 @@
           Most Popular Character:<span class="leader-stat"> {{mostPopular.character}}</span>
         </b-col>
         <b-col>
-          Meet the team!
+          Designed by: <br/>
+          Rory Johnson- Favorite character is Daredevil <br/>
+          Randy Proctor- Favorite character is Judge Dredd <br/>
+          Ben Hines- Favorite character is Nightcrawler <br/>
+          Brandon Moore- Favorite character is Wolverine <br/>
+          Jacob Wood- Favorite character is Spawn
         </b-col>
       </b-row>
     </b-container>

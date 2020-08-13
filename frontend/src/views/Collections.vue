@@ -3,10 +3,7 @@
     
     <b-container>
       
-      <b-row class="slide-left" align-h="center">
-        Number of comics written by Nick Spencer in all public collections is: {{$store.state.authorStat}} <br/>
-        Number of comics drawn by Mike Del Mundo in all public collections is: {{$store.state.artistStat}}
-      </b-row>
+      
         
         <hr>
       
